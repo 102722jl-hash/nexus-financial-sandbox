@@ -1,0 +1,16 @@
+{
+  "product": "NEXUS Financial World Sandbox",
+  "version": "2.20.0",
+  "versionLabel": "V2.20.0-composite",
+  "lifecycle": "ACTIVE_DEVELOPMENT",
+  "parentVersion": "V2.19.13-frozen",
+  "createdAt": "2026-09-16",
+  "defaultPort": 4186,
+  "apiVersion": "sandbox-resource-api-1.2.0",
+  "networkContract": "composite-network-contract-1.0.0",
+  "formulaRegistry": "generic-formula-registry-1.0.0",
+  "credentialPolicy": "EPHEMERAL_OR_ENV_REFERENCE_ONLY",
+  "causalPolicy": "AI_APPROVED_IS_CANDIDATE_AND_ABSTAIN",
+  "readinessContract": "data-graph-scenario-readiness-1.0.0",
+  "crawlerDataContract": "nexus-crawler-batch-1.0.0"
+}

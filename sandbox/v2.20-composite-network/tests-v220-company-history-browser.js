@@ -1,0 +1,22 @@
+(async()=>{
+  const assert=require('node:assert/strict'),fs=require('node:fs'),debug='http://127.0.0.1:9224';
+  const url='http://127.0.0.1:4190/?network=PLAN-9FCA3CF729FA37CDB62DA9A7&view=company&v=2.20.1';
+  const target=await (await fetch(debug+'/json/new?'+encodeURIComponent(url),{method:'PUT'})).json();
+  const ws=new WebSocket(target.webSocketDebuggerUrl),pending=new Map();let sequence=0;
+  await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true})});
+  ws.addEventListener('message',(event)=>{const message=JSON.parse(event.data);if(message.id&&pending.has(message.id)){const job=pending.get(message.id);pending.delete(message.id);message.error?job.reject(new Error(message.error.message)):job.resolve(message.result)}});
+  const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+  const evaluate=async(expression)=>{const result=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description||result.exceptionDetails.text);return result.result.value};
+  const waitFor=async(expression,timeout=15000)=>{const started=Date.now();while(Date.now()-started<timeout){if(await evaluate(expression))return;await new Promise((resolve)=>setTimeout(resolve,100))}throw new Error('WAIT_TIMEOUT: '+expression)};
+  await send('Runtime.enable');await send('Page.enable');
+  await waitFor("document.readyState==='complete'&&Boolean(window.NEXUS_V24_BRIDGE)");
+  await waitFor("window.NEXUS_V24_BRIDGE.state.networkMode==='standalone'&&document.querySelectorAll('#companySelect option').length===3");
+  const result=await evaluate(`(()=>{const bridge=window.NEXUS_V24_BRIDGE,select=document.getElementById('companySelect'),entity=bridge.nodeMap[bridge.state.selectedCompany],code=entity.importSnapshot.entityCode,all=bridge.state.runtimeNetwork.metricValues,own=all.filter((item)=>String(item.entity_code||item.entityCode||'')===code),foreign=own.filter((item)=>String(item.entity_code||item.entityCode||'')!==code);return{options:[...select.options].map((item)=>item.textContent),selected:document.getElementById('companyTitle').textContent,code,ownRows:own.length,foreignRows:foreign.length,range:[...document.querySelectorAll('[data-history-days]')].find((item)=>item.classList.contains('active'))?.textContent,caption:document.getElementById('companyHistoryCaption').textContent,latestCards:document.querySelectorAll('#companyLatestFinancials>div').length,historyRows:document.querySelectorAll('#companyFinancialHistory tr').length,trendButtons:document.querySelectorAll('[data-company-trend]').length,trendSvg:Boolean(document.querySelector('#companyTrendChart svg')),status:document.getElementById('companyFinancialStatus').textContent}})()`);
+  assert.deepEqual(result.options.slice().sort(),['北汽蓝谷','比亚迪','赛力斯'].sort());assert.equal(result.foreignRows,0);assert.equal(result.range,'90天');assert.ok(result.ownRows>=30);assert.ok(result.latestCards>=2);assert.ok(result.historyRows>=30);assert.ok(result.trendButtons>=1);assert.equal(result.trendSvg,true);
+  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+  const networkShot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync('runs/network-daily-change-preview.png',Buffer.from(networkShot.data,'base64'));
+  await evaluate("document.querySelector('[data-view=company]').click()");await waitFor("document.querySelector('[data-view-panel=company]').classList.contains('active')");
+  const companyShot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync('runs/company-history-preview.png',Buffer.from(companyShot.data,'base64'));
+  console.log('V2.20 company history browser regression: 10/10 passed '+JSON.stringify(result));
+  ws.close();await fetch(debug+'/json/close/'+target.id);
+})().catch((error)=>{console.error(error);process.exit(1)});

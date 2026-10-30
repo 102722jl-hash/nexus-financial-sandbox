@@ -1,0 +1,4 @@
+# Optional market adapter environment. Use a dedicated venv.
+akshare>=1.16
+numpy<2
+pandas>=2.0

@@ -1,0 +1,25 @@
+network:
+  id: coal_power_v1
+  name: 煤炭价格到火电企业盈利传导
+  version: '1.0.0'
+  cutoff: '2099-12-31T23:59:59+08:00'
+layers:
+  - [1, macro_policy, 宏观与政策, SOURCE]
+  - [2, coal_supply, 煤炭供需, INTERMEDIATE]
+  - [3, coal_price, 动力煤价格, INTERMEDIATE]
+  - [4, power_operation, 火电经营, INTERMEDIATE]
+  - [5, company_finance, 公司财务, INTERMEDIATE]
+  - [6, valuation, 估值与市场表现, SINK]
+entities:
+  - ['600011.SH', 华能国际, COMPANY]
+  - ['600027.SH', 华电国际, COMPANY]
+  - ['600795.SH', 国电电力, COMPANY]
+metrics:
+  POWER_GENERATION: {name: 发电量, unit: 亿千瓦时, layer: 4, type: flow}
+  GRID_SALES_POWER: {name: 上网电量, unit: 亿千瓦时, layer: 4, type: flow}
+  COAL_PRICE_5500: {name: 动力煤5500K价格, unit: 元/吨, layer: 3, type: price}
+  RAW_COAL_OUTPUT: {name: 原煤产量, unit: 万吨, layer: 2, type: flow}
+  UTILIZATION_HOURS_THERMAL: {name: 火电利用小时, unit: 小时, layer: 4, type: ratio}
+  REVENUE: {name: 营业收入, unit: 亿元, layer: 5, type: flow}
+  NET_PROFIT: {name: 归母净利润, unit: 亿元, layer: 5, type: flow}
+  CLOSE_PRICE: {name: 收盘价, unit: 元/股, layer: 6, type: price}

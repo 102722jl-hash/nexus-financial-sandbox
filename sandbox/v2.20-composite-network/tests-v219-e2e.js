@@ -1,0 +1,43 @@
+(async()=>{
+  const assert=require('node:assert/strict'),base=process.env.NEXUS_URL||'http://127.0.0.1:4180';
+  const headers={'Content-Type':'application/json','X-Client-Id':'CLIENT-v219-generated-e2e'};
+  const call=async(method,path,body)=>{const response=await fetch(base+path,{method,headers,body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(path+': '+JSON.stringify(data));return data};
+  const connection=await call('POST','/api/connections',{type:'postgresql',host:'rsshub.weixiewen.cn',port:5589,database:'pg',user:'dwzq',schema:'public',sslmode:'prefer'});
+  assert.equal(connection.readOnly,true);
+  const tables=await call('GET','/api/connections/'+connection.connectionId+'/tables');
+  let analyzed=null;
+  for(let index=0;index<tables.tables.length;index+=1){
+    analyzed=await call('POST','/api/sources/'+connection.sourceId+'/analyze',{tables:[tables.tables[index].name],append:true,reset:index===0,totalTables:tables.tables.length});
+    assert.equal(analyzed.profileProgress.completed,index+1);
+    assert.equal(analyzed.profileProgress.total,tables.tables.length);
+  }
+  assert.equal(analyzed.selectedTables.length,tables.tables.length);
+  assert.equal(analyzed.tableAdapters.length,tables.tables.length);
+  assert.ok(analyzed.mappings.every((item)=>item.sourceLocator?.database==='pg'&&item.sourceLocator?.schema==='public'&&item.sourceLocator?.table&&item.sourceLocator?.column));
+  for(const mapping of analyzed.mappings.filter((item)=>item.candidateSource==='RULE'))await call('POST','/api/mappings/'+mapping.mappingId+'/confirm',{action:'confirm',metricCode:mapping.metricCode});
+  const sync=await call('POST','/api/sources/'+connection.sourceId+'/sync',{dataCutoff:'2026-05-08',entityCodes:['601088.SH','601225.SH','600188.SH','600019.SH','000708.SZ'],rowLimit:300});
+  assert.ok(sync.metricValuesCreated>0);
+  let plan=await call('POST','/api/network-plans',{sourceId:connection.sourceId,domainId:'generated-financial',mode:'CREATE_NEW_NETWORK',networkName:'五家公司财务披露网络'});
+  assert.equal(plan.networkKind,'FINANCIAL_DISCLOSURE_NETWORK');assert.equal(plan.outputLevel,'EXPOSURE_ONLY');
+  plan=await call('POST','/api/network-plans/'+plan.networkPlanId+'/confirm',{});
+  assert.ok(plan.graph.edges.every((edge)=>['CONFIRMED_LINEAGE','CONFIRMED_STRUCTURE'].includes(edge.status)));
+  plan=await call('POST','/api/network-plans/'+plan.networkPlanId+'/activate',{});
+  const registry=await call('GET','/api/networks');
+  assert.ok(registry.networks.some((item)=>item.networkId===plan.networkPlanId&&item.deletable));
+  const registered=await call('GET','/api/networks/'+plan.networkPlanId);
+  assert.equal(registered.networkName,'五家公司财务披露网络');assert.equal(registered.nodes.length,25);assert.ok(registered.edges.length>=42);assert.ok(registered.edges.every((edge)=>['DATA_LINEAGE','ACCOUNTING_STRUCTURE','ENTITY_METRIC'].includes(edge.relationType)));
+  const nodeResponse=await call('GET','/api/sandbox/nodes'),edgeResponse=await call('GET','/api/sandbox/edges');
+  const nodeIds=new Set(nodeResponse.nodes.map((node)=>node.nodeId)),layers=new Set(nodeResponse.nodes.map((node)=>node.layer));
+  assert.equal(nodeResponse.mode,'CREATE_NEW_NETWORK');assert.equal(nodeResponse.networkName,'五家公司财务披露网络');
+  assert.deepEqual([...layers].sort(),['chain','company','constraint','demand','macro','route']);
+  assert.ok(!['cokingCoalPrice','steelRawCost','blastFurnacePool','baosteel'].some((id)=>nodeIds.has(id)));
+  assert.ok(nodeIds.has('entity-600019-sh'));assert.ok(edgeResponse.edges.length>0);
+  assert.ok(edgeResponse.edges.every((edge)=>edge.relationType&&edge.weight===0));
+  const scenario=await call('POST','/api/scenarios',{changes:[{metricCode:'JM_PRICE',changePercent:-10,durationMonths:12}],dataCutoff:'2026-05-08'});
+  const simulation=await call('POST','/api/scenarios/'+scenario.scenarioId+'/run',{changes:scenario.changes});
+  assert.equal(simulation.status,'ABSTAIN');assert.equal(simulation.outputLevel,'EXPOSURE_ONLY');assert.equal(simulation.affectedNodes.length,0);
+  const deleted=await call('DELETE','/api/networks/'+plan.networkPlanId);assert.equal(deleted.status,'DELETED');
+  const workspace=await call('GET','/api/workspace');assert.equal(workspace.status,'READY');assert.equal(workspace.source.sourceId,connection.sourceId);assert.equal(workspace.metricValueTotal,2825);assert.equal(workspace.credentialPersisted,false);
+  const remaining=await call('GET','/api/networks');assert.ok(!remaining.networks.some((item)=>item.networkId===plan.networkPlanId));
+  console.log(JSON.stringify({rows:sync.rowsRead,metricValues:sync.metricValuesCreated,networkName:nodeResponse.networkName,nodes:nodeResponse.nodes.length,edges:edgeResponse.edges.length,layers:[...layers],oldDomainNodes:0,scenarioStatus:simulation.status,outputLevel:simulation.outputLevel}));
+})().catch((error)=>{console.error(error);process.exitCode=1});

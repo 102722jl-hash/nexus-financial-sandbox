@@ -1,0 +1,58 @@
+(async()=>{
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+let checks=0;
+const check=(value,message)=>{assert.ok(value,message);checks+=1};
+const equal=(actual,expected,message)=>{assert.equal(actual,expected,message);checks+=1};
+const source=(file)=>fs.readFileSync(path.join(__dirname,file),'utf8');
+
+const html=source('index.html');
+const client=source('service-client.js');
+const mock=source('mock-adapter.js');
+const dbUi=source('v217-db-ui.js');
+const workbench=source('v216-workbench.js');
+const server=source('server.py');
+const connector=source('db_connectors.py');
+const manifest=source('v217-run-manifest.js');
+const apiTypes=source('api-types.d.ts');
+check(html.includes('NEXUS V2.19')&&html.includes('v217-db-ui.js?v=2.19.11'),'页面必须标识当前版本并加载兼容数据库 UI');
+check(html.indexOf('service-client.js')<html.indexOf('v216-workbench.js'),'统一客户端必须先于工作台加载');
+check(html.includes('v217-run-manifest.js?v=2.17.0'),'运行清单必须在应用启动前加载');
+check(client.includes('NEXUS_API_CLIENT')&&client.includes('mode')&&client.includes("query.get('api')==='mock'"),'客户端必须支持 HTTP 与 Mock 模式');
+check(client.includes('connections:{')&&client.includes('sources:{')&&client.includes('mappings:{')&&client.includes('sandbox:{')&&client.includes('scenarios:{'),'客户端必须集中定义资源 API');
+check(client.includes('noSecret')&&client.includes('password')&&client.includes('credentialRef'),'客户端必须剥离持久化敏感字段');
+check(mock.includes('NEXUS_API_MOCK')&&mock.includes('affectedNodes')&&mock.includes('confidence')&&mock.includes('evidence')&&mock.includes('explain:'),'Mock 必须返回与真实 API 一致的金融结果结构');
+check(apiTypes.includes('DatabaseConnectionInput')&&apiTypes.includes('MetricMapping')&&apiTypes.includes('SandboxEdge')&&apiTypes.includes('ScenarioResult'),'必须提供请求、关系和结果 TypeScript 契约');
+check(dbUi.includes('api.connections.test')&&dbUi.includes('api.connections.create')&&dbUi.includes('api.connections.tables')&&dbUi.includes('api.sources.analyze'),'数据库 UI 不得直接调用 fetch');
+check(workbench.includes('api.profileSource')&&workbench.includes('api.buildPackage')&&workbench.includes('api.ai.testSession')&&workbench.includes('api.request'),'工作台 API 请求必须经由 service client');
+check(!dbUi.includes("fetch('/api/")&&!workbench.includes("fetch('/api/"),'页面组件不得写死 API fetch');
+for(const route of ['/api/connections/test','/api/connections','/api/connections/','/api/sources/','/api/mappings/','/api/sandbox/nodes','/api/sandbox/edges','/api/scenarios','/api/ai/test'])check(server.includes(route),'后端缺少 '+route);
+check(server.includes('scenario_explain')&&server.includes('ai_explain_result'),'后端必须通过受控适配器解释已计算结果');
+check(server.includes('CONNECTIONS')&&server.includes('SOURCES')&&server.includes('MAPPINGS')&&server.includes('SCENARIO_RESULTS'),'后端必须有连接、来源、映射和情景资源状态');
+check(server.includes('apiVersion')&&server.includes('authMode')&&server.includes('credentialPolicy')&&server.includes('aiPolicy'),'健康检查必须声明 API、认证、凭据和 AI 策略');
+check(server.includes('X-Client-Id')&&server.includes('PERMISSION_DENIED')&&server.includes('authorized_client'),'本地 API 必须提供客户端访问门禁');
+check(server.includes('seal_credential')&&server.includes('open_credential')&&server.includes('credentialBlob'),'后端连接凭据必须使用进程级加密仓');
+check(server.includes('credentialPersisted": False')&&server.includes('CREDENTIAL_DISPOSAL'),'响应必须明确凭据未持久化');
+check(connector.includes('SET TRANSACTION READ ONLY')&&connector.includes('START TRANSACTION READ ONLY'),'PostgreSQL/MySQL 都必须强制只读事务');
+check(connector.includes('information_schema')&&connector.includes('MAX_TABLES')&&connector.includes('MAX_COLUMNS'),'数据库扫描必须使用元数据白名单和数量上限');
+check(!server.includes('print(payload')&&!connector.includes('print(password'),'服务日志不得输出凭据');
+check(manifest.includes('version=\'2.17.0\'')&&manifest.includes('parentVersion=\'2.16.0-frozen\'')&&manifest.includes('credentialPolicy'),'运行清单必须记录 V2.17 和凭据策略');
+
+const context={console,URLSearchParams,location:{search:'?api=mock'},sessionStorage:{getItem:()=>null,setItem:()=>{}},crypto:{randomUUID:()=> 'test-client'}};
+context.window=context;
+vm.createContext(context);
+vm.runInContext(mock,context);
+vm.runInContext(client,context);
+check(context.NEXUS_API_CLIENT.mode==='mock','Mock 查询参数必须切换客户端模式');
+const mockScenario=await context.NEXUS_API_CLIENT.scenarios.run('SCENARIO-MOCK',{changes:[{metricCode:'JM_PRICE',changePercent:-10,durationMonths:12}]});
+equal(mockScenario.state,'ready','Mock 场景请求必须返回 ready envelope');
+equal(mockScenario.data.affectedNodes.length,3,'Mock 场景必须返回受影响节点');
+check(mockScenario.data.affectedNodes.every((item)=>typeof item.confidence==='number'&&item.reason),'Mock 节点必须带置信度和原因');
+const mockExplanation=await context.NEXUS_API_CLIENT.scenarios.explain('SCENARIO-MOCK',{});
+equal(mockExplanation.state,'ready','Mock AI 解释请求必须返回 ready envelope');
+check(mockExplanation.data.status==='PARTIAL'&&mockExplanation.data.evidence?.length,'Mock AI 解释必须标记候选状态并返回证据');
+
+console.log('Financial sandbox V2.17 portable connector tests: '+checks+'/'+checks+' passed');
+})().catch((error)=>{console.error(error);process.exitCode=1});

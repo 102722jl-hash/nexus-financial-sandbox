@@ -1,0 +1,18 @@
+(async()=>{
+  const assert=require('node:assert/strict');
+  const debug=process.env.NEXUS_DEBUG_URL||'http://127.0.0.1:9225';
+  const base=process.env.NEXUS_URL||'http://127.0.0.1:4185';
+  const target=await (await fetch(debug+'/json/new?'+encodeURIComponent(base+'/?domain=coal-steel&view=data&v=2.19.13'),{method:'PUT'})).json();
+  const ws=new WebSocket(target.webSocketDebuggerUrl),pending=new Map();let sequence=0;
+  await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true})});
+  ws.addEventListener('message',(event)=>{const message=JSON.parse(event.data);if(message.id&&pending.has(message.id)){const job=pending.get(message.id);pending.delete(message.id);message.error?job.reject(new Error(message.error.message)):job.resolve(message.result)}});
+  const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+  const evaluate=async(expression)=>{const result=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description||result.exceptionDetails.text);return result.result.value};
+  const waitFor=async(expression,timeout=12000)=>{const started=Date.now();while(Date.now()-started<timeout){if(await evaluate(expression))return;await new Promise((resolve)=>setTimeout(resolve,80))}throw new Error('WAIT_TIMEOUT: '+expression)};
+  await send('Runtime.enable');await send('Page.enable');
+  await waitFor("document.readyState==='complete'&&Boolean(window.NEXUS_V24_BRIDGE)");
+  const result=await evaluate(`(()=>{const nodes=[{nodeId:'coal-price',layer:'macro',label:'动力煤价格',status:'CONFIRMED_DATA',metricCodes:['COAL_PRICE'],baseline:{BASE:700}},{nodeId:'fuel-cost',layer:'route',label:'燃料成本',status:'CONFIRMED_DATA',metricCodes:['FUEL_COST'],baseline:{BASE:400}},{nodeId:'isolated',layer:'chain',label:'孤立证据指标',status:'CONFIRMED_DATA',metricCodes:['ISOLATED'],baseline:{BASE:1}}],edges=[{edgeId:'candidate-edge',sourceNodeId:'coal-price',targetNodeId:'fuel-cost',direction:'positive',weight:.6,candidateWeight:.6,lagDays:30,confidence:.8,mechanism:'候选传导关系',evidenceSource:'AI_REVIEW',status:'CANDIDATE'}],candidateGraph={nodes:nodes.slice(0,2),edges},bridge=window.NEXUS_V24_BRIDGE,applied=bridge.applyStandaloneNetwork({networkPlanId:'PLAN-CANDIDATE-ONLY',networkKind:'MULTI_TABLE_NETWORK',networkName:'候选网络测试',outputLevel:'EXPOSURE_ONLY',candidateScenarioReady:true,causalGraph:{nodes:[],edges:[]},candidateGraph,fullGraph:{nodes,edges}}),transmission={view:bridge.state.networkView,nodeCount:document.getElementById('nodeCount').textContent,hasIsolated:Boolean(bridge.nodeMap.isolated)};document.getElementById('networkEvidenceView').click();return{applied,transmission,evidence:{view:bridge.state.networkView,nodeCount:document.getElementById('nodeCount').textContent,hasIsolated:Boolean(bridge.nodeMap.isolated)},gate:document.getElementById('generatedNetworkGate').textContent}})()`);
+  assert.equal(result.applied.applied,true);assert.equal(result.applied.nodeCount,2);assert.equal(result.applied.edgeCount,1);assert.equal(result.transmission.view,'causal');assert.equal(result.transmission.nodeCount,'2');assert.equal(result.transmission.hasIsolated,false);assert.equal(result.evidence.view,'evidence');assert.equal(result.evidence.nodeCount,'3');assert.equal(result.evidence.hasIsolated,true);assert.ok(result.gate.includes('EXPOSURE_ONLY'));
+  console.log('V2.19 candidate-only transmission canvas test: 10/10 passed '+JSON.stringify(result));
+  ws.close();await fetch(debug+'/json/close/'+target.id);
+})().catch((error)=>{console.error(error);process.exit(1)});

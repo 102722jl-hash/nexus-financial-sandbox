@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="多行业金融世界沙盒通用模板">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css?v=1.0.0">
+  <title>NEXUS Domain Lab · 通用金融沙盒模板</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span>N</span><div><b>NEXUS DOMAIN LAB</b><small>通用金融沙盒模板 · 独立原型</small></div></div>
+      <nav aria-label="主视图"><button class="active" data-view="network">世界网络</button><button data-view="company">公司估值</button><button data-view="data">数据接入</button><button data-view="audit">运行审计</button></nav>
+      <div class="status"><i></i><span>NOT IDENTIFIED</span><b>ABSTAIN</b></div>
+    </header>
+
+    <section class="control-band">
+      <label class="domain-picker"><span>领域包</span><select id="domainSelect"></select></label>
+      <div class="scenario-command">
+        <span class="command-mark">⌁</span>
+        <div><small>当前情景</small><input id="scenarioText" aria-label="当前情景" readonly></div>
+        <label><span id="shockLabel">冲击强度</span><input id="shockSlider" type="range" min="-50" max="50" step="1"><output id="shockValue">0%</output></label>
+      </div>
+      <div class="horizon" aria-label="情景周期"><button data-horizon="3">3M</button><button class="active" data-horizon="12">12M</button><button data-horizon="36">36M</button></div>
+      <button class="run-button" id="runScenario">运行情景</button>
+    </section>
+
+    <section class="context-strip">
+      <div><span>领域状态</span><b id="domainState">--</b><small id="domainVersion">--</small></div>
+      <div><span>节点覆盖</span><b id="nodeCoverage">--</b><small>MATCHED / TOTAL</small></div>
+      <div><span>公司估值覆盖</span><b id="valuationCoverage">--</b><small>可计算 / 样本</small></div>
+      <div><span>数据截止</span><b id="dataCutoff">--</b><small>POINT-IN-TIME</small></div>
+      <div class="warning"><span>研究门禁</span><b>NEEDS HUMAN REVIEW</b><small>formal_ready=false</small></div>
+    </section>
+
+    <main>
+      <section class="view active" data-view-panel="network">
+        <div class="network-toolbar">
+          <div><span>FINANCIAL CAUSAL NETWORK</span><h1 id="caseTitle">--</h1><p id="caseSummary">--</p></div>
+          <div class="legend"><span><i class="positive"></i>正向</span><span><i class="negative"></i>负向</span><span><i class="assumed"></i>分析假设</span><span><i class="missing"></i>缺失 / 不适用</span></div>
+        </div>
+        <div class="network-scroll" id="networkScroll">
+          <div class="network-board" id="networkBoard">
+            <svg id="edgeLayer" aria-hidden="true"></svg>
+            <div class="layer-grid" id="layerGrid"></div>
+          </div>
+        </div>
+        <div class="network-footer">
+          <div class="path-panel"><span>主传播路径</span><ol id="pathList"></ol></div>
+          <div class="insight-panel"><span>条件情景结论</span><p id="insightText">--</p><small>这是条件推演，不是已识别因果结论。</small></div>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="company">
+        <div class="company-layout">
+          <aside class="company-list"><div><span>COMPANY UNIVERSE</span><b id="companyCount">0</b></div><div id="companyList"></div></aside>
+          <article class="valuation-workbench">
+            <div class="valuation-head"><div><span id="companyTicker">--</span><h1 id="companyName">--</h1><p id="companyModel">--</p></div><div class="method-badge"><span>估值方法</span><b id="valuationMethod">--</b><small id="outputLevel">--</small></div></div>
+            <div class="valuation-kpis">
+              <div><span>当前市值</span><b id="marketCap">--</b><small id="marketCapDate">--</small></div>
+              <div><span>基准股权价值</span><b id="baselineValue">--</b><small>模型内在价值</small></div>
+              <div><span>情景股权价值</span><b id="scenarioValue">--</b><small>冲击后重算</small></div>
+              <div id="scenarioChangeCard"><span>情景价值变化</span><b id="scenarioChange">--</b><small>相对基准</small></div>
+              <div id="marketSpaceCard"><span>相对当前市值空间</span><b id="marketSpace">--</b><small>非目标价</small></div>
+            </div>
+            <div class="valuation-grid">
+              <section class="formula-card"><div class="section-head"><span>VALUATION BRIDGE</span><b id="formulaStatus">CALCULATED RESULT</b></div><div class="formula" id="valuationFormula"></div><div class="bridge-table" id="valuationBridge"></div></section>
+              <section class="driver-card"><div class="section-head"><span>OPERATING DRIVERS</span><b>SCENARIO VS BASE</b></div><div id="driverList"></div></section>
+            </div>
+            <section class="source-card"><div class="section-head"><span>DATA & EVIDENCE STATUS</span><b>逐项门禁</b></div><div id="companyEvidence"></div></section>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="data">
+        <div class="workspace-head"><span>LOCAL DATA CONNECTOR</span><h1>数据接入与领域匹配</h1><p>这是接口框架预览。第一阶段连接器在本机读取数据库、调用可选 AI，并导出可离线加载的数据包。</p></div>
+        <div class="workflow">
+          <div class="workflow-step done"><i>01</i><b>选择数据源</b><span>MySQL / PostgreSQL / CSV / Excel / SQLite</span></div>
+          <div class="workflow-step done"><i>02</i><b>字段画像</b><span>类型、单位、期间、空值率、少量样例</span></div>
+          <div class="workflow-step current"><i>03</i><b>AI 候选映射</b><span>只处理规则无法确定的语义</span></div>
+          <div class="workflow-step"><i>04</i><b>人工确认</b><span>冻结 metric-mapping.json</span></div>
+          <div class="workflow-step"><i>05</i><b>生成领域包</b><span>静态沙盒离线加载</span></div>
+        </div>
+        <div class="data-grid">
+          <section><div class="section-head"><span>SOURCE PROFILE</span><b>READ ONLY</b></div><div id="sourceProfile"></div></section>
+          <section><div class="section-head"><span>NODE MATCH REPORT</span><b id="matchReportState">--</b></div><div id="mappingTable"></div></section>
+          <section><div class="section-head"><span>PACKAGE OUTPUT</span><b>DESIGN ONLY</b></div><pre id="packageTree"></pre></section>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="audit">
+        <div class="workspace-head"><span>RUN MANIFEST</span><h1>版本、证据与可复现性</h1><p>任务成功不代表研究正式可用；证据、时间、估值和因果门禁分别记录。</p></div>
+        <div class="audit-layout">
+          <section class="manifest-card"><div class="section-head"><span>CURRENT RUN</span><b id="runId">--</b></div><dl id="manifestList"></dl></section>
+          <section class="gate-card"><div class="section-head"><span>RESEARCH GATES</span><b>FAIL CLOSED</b></div><div id="gateList"></div></section>
+          <section class="queue-card"><div class="section-head"><span>LOCAL TASK ORCHESTRATION</span><b>PROTOTYPE</b></div><div id="taskQueue"></div></section>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>NEXUS DOMAIN LAB · GENERAL TEMPLATE 0.1</span><p>市场事实、模型假设和计算结果分别展示。页面结果不构成投资建议。</p><b>ABSTAIN · formal_ready=false</b></footer>
+  </div>
+  <script src="domains.js?v=1.0.0"></script>
+  <script src="app.js?v=1.0.0"></script>
+</body>
+</html>

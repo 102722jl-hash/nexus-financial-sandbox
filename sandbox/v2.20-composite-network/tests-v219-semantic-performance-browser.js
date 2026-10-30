@@ -1,0 +1,20 @@
+(async()=>{
+  const assert=require('node:assert/strict'),debug='http://127.0.0.1:9224';
+  const target=await (await fetch(debug+'/json/new?'+encodeURIComponent('http://127.0.0.1:4183/?api=mock&domain=coal-steel&view=data&v=2.19.11'),{method:'PUT'})).json();
+  const ws=new WebSocket(target.webSocketDebuggerUrl),pending=new Map();let sequence=0;
+  await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true})});
+  ws.addEventListener('message',(event)=>{const message=JSON.parse(event.data);if(message.id&&pending.has(message.id)){const job=pending.get(message.id);pending.delete(message.id);message.error?job.reject(new Error(message.error.message)):job.resolve(message.result)}});
+  const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+  const evaluate=async(expression)=>{const result=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description||result.exceptionDetails.text);return result.result.value};
+  const waitFor=async(expression,timeout=12000)=>{const started=Date.now();while(Date.now()-started<timeout){if(await evaluate(expression))return;await new Promise((resolve)=>setTimeout(resolve,80))}throw new Error('WAIT_TIMEOUT: '+expression)};
+  await send('Runtime.enable');await send('Page.enable');await waitFor("document.readyState==='complete'&&Boolean(window.NEXUS_V218_PIPELINE)");
+  await evaluate(`(()=>{window.dispatchEvent(new CustomEvent('nexus:source-analyzed',{detail:{sourceId:'SOURCE-PERF-UI',networkIntent:'CREATE_NEW_NETWORK',mappings:[],metricCatalog:[]}}));let polls=0;const local=[{sourceField:'empty_field',candidateSource:'LOCAL_EMPTY_PROFILE',suggestedAction:'IGNORE',status:'PENDING_REVIEW'}];window.NEXUS_API_CLIENT.sources.startAiMappingJob=async()=>({state:'ready',data:{jobId:'AIJOB-PERF-UI',type:'AI_SEMANTIC_PROFILE',status:'QUEUED',totalFields:104,processedFields:82,aiQueuedFields:22,localResolvedFields:33,localSuggestedIgnore:49,totalBatches:0,completedBatches:0,candidates:local,errors:[]}});window.NEXUS_API_CLIENT.ai.mappingJob=async()=>{polls+=1;return{state:'ready',data:{jobId:'AIJOB-PERF-UI',type:'AI_SEMANTIC_PROFILE',status:polls<2?'RUNNING':'SUCCEEDED',totalFields:104,processedFields:polls<2?94:104,aiQueuedFields:22,localResolvedFields:33,localSuggestedIgnore:49,totalBatches:6,completedBatches:polls<2?3:6,batchSize:4,maxWorkers:3,timeoutSeconds:60,candidates:local,errors:[]}}};document.getElementById('v218AskAi').click();return true})()`);
+  await waitFor("document.getElementById('v218AiMapState').textContent.includes('4字段/批')");
+  const progress=await evaluate("document.getElementById('v218AiMapState').textContent");
+  assert.ok(progress.includes('6'));assert.ok(progress.includes('本地完成 82'));assert.ok(progress.includes('AI排队 22'));assert.ok(progress.includes('3路并发'));assert.ok(progress.includes('单批最长60秒'));
+  await waitFor("document.getElementById('v218AskAi').disabled===false");
+  const summary=await evaluate("document.getElementById('v218AiMapState').textContent");
+  assert.ok(summary.includes('本地识别 33 个'));assert.ok(summary.includes('空值跳过 49 个'));
+  console.log('V2.19 semantic performance browser tests: 7/7 passed '+summary);
+  ws.close();await fetch(debug+'/json/close/'+target.id);
+})().catch((error)=>{console.error(error);process.exit(1)});

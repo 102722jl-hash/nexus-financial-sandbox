@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXUS V2.20 将任意行业数据编译为可诊断、可传播、可回滚的复合金融网络">
+  <link rel="icon" href="data:,">
+  <title>NEXUS V2.20 · 复合网络编译工作台</title>
+  <link rel="stylesheet" href="styles.css?v=2.20.1">
+  <link rel="stylesheet" href="v2-axis.css?v=2.2.2">
+  <link rel="stylesheet" href="v24.css?v=2.12.0">
+  <link rel="stylesheet" href="v27.css?v=2.7.2">
+  <link rel="stylesheet" href="v28.css?v=2.12.0">
+  <link rel="stylesheet" href="v29.css?v=2.12.0">
+  <link rel="stylesheet" href="v210.css?v=2.12.0">
+  <link rel="stylesheet" href="v211.css?v=2.12.0">
+  <link rel="stylesheet" href="v212.css?v=2.19.12">
+  <link rel="stylesheet" href="v213.css?v=2.13.0">
+  <link rel="stylesheet" href="v214.css?v=2.15.3">
+  <link rel="stylesheet" href="v215.css?v=2.15.3">
+  <link rel="stylesheet" href="v216.css?v=2.16.0">
+  <link rel="stylesheet" href="v217.css?v=2.19.12">
+  <link rel="stylesheet" href="v218.css?v=2.19.12">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">N</span><div><b>NEXUS V2.20</b><small>复合网络编译工作台</small></div></div>
+      <nav class="view-tabs" aria-label="研究视图"><button class="active" data-view="world">世界网络</button><button data-view="company">公司模型</button><button data-view="data">数据接入</button><button data-view="governance">任务治理</button></nav>
+      <div class="domain-control"><label for="domainSelect">世界网络</label><select id="domainSelect" aria-label="切换世界网络"><option value="ai-infrastructure">AI 基础设施</option><option value="coal-steel">煤炭—钢铁</option><option value="new-energy-vehicle" disabled>新能源汽车 · 候选</option></select><button id="deleteNetwork" type="button" title="删除当前生成网络" disabled>删除</button></div>
+      <div class="audit-state"><span>NOT IDENTIFIED</span><b>ABSTAIN</b></div>
+    </header>
+
+    <section class="scenario-command">
+      <div class="scenario-context" aria-label="当前主情景"><b>当前主情景</b><span>高端算力出口管制</span><small>单一条件推演 · 12M 经营阶段</small></div>
+      <form id="scenarioForm"><span aria-hidden="true">⌁</span><input id="scenarioInput" aria-label="输入金融情景" value="出口管制上升 50%，同时 HBM 供给增加 30%"><button type="submit">结构化</button></form>
+      <div class="scenario-actions"><button id="resetAll">重置</button></div>
+    </section>
+
+    <section class="case-banner">
+      <div><span id="domainCaseLabel">FINANCIAL WORLD SANDBOX · CASE 01</span><h1 id="domainCaseTitle">金融沙盒推演</h1><p id="domainCaseDescription">--</p></div>
+      <div class="case-banner-state"><b id="domainStateTitle">动态领域加载</b><small id="domainStateDetail">行业包 · 公司依赖 · 图结构哈希</small></div>
+    </section>
+
+    <section class="v27-kpi-strip" aria-label="当前情景关键结果">
+      <div data-v27-reveal="4"><span>等权情景市值指数</span><b id="v27IndustryValue">--</b><small>基准 100 · 候选估值</small></div>
+      <div class="positive" data-v27-reveal="7"><span>市值增幅最高</span><b id="v27Winner">--</b><small>冲击后 / 基准 − 1</small></div>
+      <div class="negative" data-v27-reveal="7"><span>市值降幅最大</span><b id="v27Loser">--</b><small>冲击后 / 基准 − 1</small></div>
+      <div data-v27-reveal="3"><span>当前供给瓶颈</span><b id="v27Bottleneck">--</b><small>供给 / 交付余量最低</small></div>
+      <div class="audit" data-v27-reveal="0"><span>研究状态</span><b>ABSTAIN</b><small>NEEDS_HUMAN_REVIEW</small></div>
+    </section>
+
+    <section class="quick-presets" id="quickPresets" aria-label="快捷情景">
+      <span>QUICK SHOCKS</span>
+      <button data-preset="AI 资本开支下降 30%">AI CapEx -30%</button>
+      <button data-preset="HBM 供给增加 50%">HBM +50%</button>
+      <button data-preset="推理单位成本下降 70%">推理成本 -70%</button>
+      <button data-preset="出口管制上升 50%">出口管制 +50%</button>
+      <button data-preset="CoWoS 产能增加 40%">CoWoS +40%</button>
+      <button data-preset="电力供给下降 25%">电力 -25%</button>
+      <i class="preset-separator"></i>
+      <span>RESEARCH LENS</span>
+      <button class="highlight-all active" id="highlightAll" data-focus="all">全部高亮</button>
+      <button data-focus="path">当前主路径</button>
+      <button data-focus="upstream">芯片上游</button>
+      <button data-focus="capacity">产能瓶颈</button>
+      <button data-focus="infrastructure">基础设施</button>
+      <i class="preset-separator"></i>
+      <button class="active" data-evidence-filter="all">全部证据</button>
+      <button data-evidence-filter="supported">T1 / T2 入口</button>
+      <button data-evidence-filter="model">模型假设</button>
+    </section>
+
+    <section class="control-band">
+      <div class="shock-list" id="shockList"></div>
+      <div class="horizon-control"><span>传播阶段</span><div class="segmented"><button data-horizon="3">3M 即时</button><button class="active" data-horizon="12">12M 经营</button><button data-horizon="36">36M 结构</button></div></div>
+      <div class="range-control"><span>参数区间</span><div class="range-key"><i></i><b>低</b><i></i><b>基准</b><i></i><b>高</b></div></div>
+    </section>
+
+    <section class="v27-playback-band" aria-label="传播播放控制">
+      <div class="v27-player-actions">
+        <button id="v27Play" title="播放或暂停传播"><span id="v27PlayIcon">▶</span><b id="v27PlayLabel">播放传播</b></button>
+        <button id="v27Step" title="前进一步" aria-label="前进一步">›</button>
+        <button id="v27Replay" title="从头重播" aria-label="从头重播">↺</button>
+      </div>
+      <div class="v27-stage-track">
+        <div class="v27-progress"><i id="v27ProgressFill"></i></div>
+        <div class="v27-stages">
+          <button data-v27-stage="0">情景输入</button><button data-v27-stage="1">需求驱动</button><button data-v27-stage="2">技术路线</button><button data-v27-stage="3">供给余量</button><button data-v27-stage="4">产业价值池</button><button data-v27-stage="5">公司暴露</button><button data-v27-stage="6">财务桥接</button><button data-v27-stage="7">市值重估</button>
+        </div>
+      </div>
+      <div class="v27-playback-meta"><b id="v27StageState">08 / 08 · 市值重估</b><select id="v27Speed" aria-label="播放速度"><option value="1700">慢速</option><option value="1100" selected>标准</option><option value="650">快速</option></select><button id="v27ShowAll">显示完整系统</button><span class="v27-playback-note">动画不改变计算结果</span></div>
+    </section>
+
+    <section class="v29-resolver-band" aria-label="当前公司解析图">
+      <div class="v29-resolver-title"><span>RESOLVED GRAPH</span><b id="v29ResolvedCompany">NVIDIA</b><small id="v29ResolvedDomain">AI 基础设施产业链</small></div>
+      <div class="v29-resolver-stats"><div><span>节点 / 边</span><b id="v29GraphSize">--</b></div><div><span>情景连通</span><b id="v29PathStatus">--</b></div><div><span>相对上一图</span><b id="v29GraphDiff">--</b></div><div><span>图哈希</span><b id="v29GraphHash">--</b></div></div>
+      <div class="v29-layer-counts" id="v29LayerCounts"></div>
+      <button id="v29ApplyGraph" class="v29-apply">仅显示解析图</button>
+    </section>
+
+    <main class="research-grid">
+      <aside class="left-rail">
+        <div class="section-label">SYSTEM LAYERS</div>
+        <button class="layer active" data-layer="all"><i></i><span>全部系统</span><b id="nodeCount">0</b></button>
+        <button class="layer" data-layer="macro"><i></i><span>宏观 / 政策</span><b>01</b></button>
+        <button class="layer" data-layer="demand"><i></i><span>需求驱动</span><b>02</b></button>
+        <button class="layer" data-layer="route"><i></i><span>技术路线</span><b>03</b></button>
+        <button class="layer" data-layer="constraint"><i></i><span>供给余量</span><b>04</b></button>
+        <button class="layer" data-layer="chain"><i></i><span>产业价值池</span><b>05</b></button>
+        <button class="layer" data-layer="company"><i></i><span>关键公司</span><b>06</b></button>
+        <div class="layer-legend"><p><span class="line positive"></span>正向传播</p><p><span class="line negative"></span>负向传播</p><p><span class="line assumed"></span>候选未触发</p></div>
+      </aside>
+
+      <section class="world-view view-panel active" data-view-panel="world">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="networkCanvas" aria-label="AI 基础设施金融世界网络"></canvas>
+          <div class="canvas-head"><div><span id="canvasScenario">情景 A</span><b id="canvasPhase">12M · 经营阶段</b></div><div class="canvas-tools"><button id="networkCausalView" class="active">传导网络</button><button id="networkEvidenceView">全部节点与证据</button><button id="zoomOut">−</button><button id="fitView">适配</button><button id="zoomIn">+</button></div></div>
+          <div class="selection-note" id="selectionNote">点击任意节点，查看左右相关链路</div>
+          <div class="generated-network-state" id="generatedNetworkState" hidden><span>GENERATED NETWORK</span><b id="generatedNetworkName">--</b><small id="generatedNetworkGate">--</small></div>
+          <div class="network-axis" id="networkAxis" aria-label="金融系统六个层级">
+            <div class="axis-heading macro" data-axis-layer="macro"><b>宏观 / 政策环境</b><small>MACRO &amp; POLICY</small></div>
+            <div class="axis-heading demand" data-axis-layer="demand"><b>需求驱动</b><small>DEMAND DRIVERS</small></div>
+            <div class="axis-heading route" data-axis-layer="route"><b>技术路线竞争</b><small>TECH ROUTES</small></div>
+            <div class="axis-heading constraint" data-axis-layer="constraint"><b>供给余量 / 产能瓶颈</b><small>CAPACITY HEADROOM</small></div>
+            <div class="axis-heading chain" data-axis-layer="chain"><b>产业链环节与节点</b><small>VALUE CHAIN</small></div>
+            <div class="axis-heading company" data-axis-layer="company"><b>公司经营 / 估值</b><small>REVENUE MODEL / VALUATION</small></div>
+          </div>
+          <div class="impact-scale"><span>负向模型变化</span><i></i><em>基线指数 100</em><i></i><span>正向模型变化</span></div>
+        </div>
+        <div class="network-summary"><div><span>公司市值变化区间</span><strong id="industryRange">--</strong><small id="industryBase">等权情景市值指数</small></div><div><span>当前瓶颈</span><strong id="bottleneck">--</strong><small>供给 / 交付余量最低</small></div><div><span>最大二阶效应</span><strong id="interaction">--</strong><small>经营模型交叉项</small></div><div><span>市值变化分化</span><strong id="dispersion">--</strong><small>最高与最低变化比例差</small></div></div>
+        <div class="bridge-dock">
+          <div class="bridge-head"><div><span>FINANCIAL BRIDGE · 当前公司</span><b id="bridgeCompany">NVIDIA</b></div><button id="openCompanyModel">打开完整公司模型 →</button></div>
+          <div class="bridge-flow" id="bridgeFlow"></div>
+          <div class="company-ranking" id="companyRanking"></div>
+        </div>
+      </section>
+
+      <section class="company-view view-panel" data-view-panel="company">
+        <div class="company-browser">
+          <div class="company-browser-head"><div><span>COMPANY MODEL</span><h1 id="companyTitle">NVIDIA</h1></div><select id="companySelect" aria-label="选择公司"></select></div>
+          <div class="model-signature"><span id="modelFamily">ACCELERATOR</span><strong id="modelFormula">出货量 × ASP × 系统附加率</strong><b>MODEL_ASSUMPTION</b></div>
+          <div class="v28-company-gate" id="v28CompanyGate"><span>情景估值输出等级</span><b>LOADING</b><small>正在加载行情、财务底座与公司估值模型。</small></div>
+          <div class="v215-valuation-mode"><div><span>估值模式</span><b id="v215ValuationMode">MARKET_CALIBRATED_SCENARIO</b><small id="v215ValuationModeNote">市场校准情景重估，不是独立目标价</small></div><div><span>当前市值门禁</span><b id="v215MarketGate">PARTIAL</b><small>股价、稀释股数、日期和来源逐项检查</small></div><div><span>内在价值门禁</span><b id="v215IntrinsicGate">NEEDS_HUMAN_REVIEW</b><small>基准预测与估值参数需独立闭环</small></div></div>
+          <section class="v213-valuation-ledger" id="v213ValuationLedger" aria-label="公司估值门禁">
+            <div class="v213-ledger-head"><div><span>SCENARIO EQUITY VALUE</span><h2 id="v213ValuationCompany">--</h2></div><div><b id="v213ValuationMethod">--</b><small id="v213ValuationStatus">LOADING</small></div></div>
+            <div class="v213-value-grid">
+              <div><span>当前市值</span><b id="v213CurrentMarketCap">--</b><small>行情数据提供商候选值</small></div>
+              <div><span>基准情景股权价值</span><b id="v213BaselineValue">--</b><small>市场校准至当前市值</small></div>
+              <div><span>冲击后股权价值</span><b id="v213ScenarioValue">--</b><small>经营变化进入估值模型</small></div>
+              <div><span>情景价值变化</span><b id="v213ValueChange">--</b><small id="v213ValueChangePct">金额 / 相对基准比例</small></div>
+              <div><span>相对当前市值空间</span><b id="v213MarketUpside">--</b><small>冲击后股权价值 / 当前市值 − 1</small></div>
+            </div>
+            <div class="v213-valuation-meta"><div><span>估值公式</span><b id="v213Formula">等待完整输入</b></div><div><span>数据截止</span><b id="v213Cutoff">--</b></div></div>
+            <div class="v213-input-grid" id="v213InputGrid"></div>
+            <div class="v213-missing" id="v213Missing"></div>
+            <p class="v213-boundary" id="v213Boundary">正在计算当前市值、基准价值与情景价值。</p>
+          </section>
+          <div class="company-driver-grid" id="companyDriverGrid"></div>
+          <section class="company-financial-history" aria-label="公司财务历史与最新数据">
+            <div class="company-financial-head"><div><span>COMPANY DATA TIMELINE</span><h2>历史趋势与每日更新记录</h2></div><b id="companyFinancialStatus">等待数据</b></div>
+            <div class="company-history-toolbar"><div id="companyHistoryRange" class="company-history-range" aria-label="历史区间"><button data-history-days="30">30天</button><button data-history-days="90" class="active">90天</button><button data-history-days="365">1年</button><button data-history-days="0">全部</button></div><small id="companyHistoryCaption">默认展示最近90天</small></div>
+            <div class="company-latest-grid" id="companyLatestFinancials"></div>
+            <div class="company-trend-panel"><div class="company-trend-head"><div><span>TREND</span><h3 id="companyTrendTitle">指标变化趋势</h3></div><div id="companyTrendMetricControls" class="company-trend-metrics"></div></div><div id="companyTrendChart" class="company-trend-chart"></div></div>
+            <div class="company-update-log-head"><div><span>DAILY UPDATE LOG</span><h3>每日采集与修订记录</h3></div><small>同一指标与上一条有效记录比较</small></div>
+            <div class="company-history-table-wrap"><table class="company-history-table"><thead><tr><th>指标</th><th>数值</th><th>较上次</th><th>报告期</th><th>公告/更新</th><th>来源</th><th>数据状态</th></tr></thead><tbody id="companyFinancialHistory"></tbody></table></div>
+          </section>
+          <div class="driver-tree" id="driverTree"></div>
+          <div class="waterfall"><div class="waterfall-head"><span>市值变化归因</span><b>金额可回加至情景股权价值</b></div><div class="waterfall-bars" id="waterfallBars"></div></div>
+        </div>
+      </section>
+
+      <section class="v215-workbench view-panel" data-view-panel="data">
+        <div class="v215-head"><div><span>本地数据连接与领域编译</span><h1>数据接入与网络变更审核</h1><p>实际数据只在映射和网络方案逐项确认后进入确定性推演。</p></div><b id="v215ConnectorState">正在检查</b></div>
+        <div class="v215-workflow"><div><i>01</i><b>来源</b><span>数据库 / 文件</span></div><div><i>02</i><b>画像</b><span>字段 / 时间 / 实体</span></div><div><i>03</i><b>领域</b><span>行业候选评分</span></div><div><i>04</i><b>映射</b><span>指标 / 公司</span></div><div><i>05</i><b>差异</b><span>新增 / 移除 / 更新</span></div><div><i>06</i><b>确认</b><span>人工冻结计划</span></div><div><i>07</i><b>激活</b><span>重载正确领域</span></div></div>
+        <section class="v219-import-intent" aria-label="导入目标">
+          <div><span>步骤 0 · 先确定用户目标</span><h2>这次导入要怎样改变网络？</h2></div>
+          <label>导入目标<select id="v219NetworkMode"><option value="CREATE_NEW_NETWORK">创建全新网络（不使用当前行业）</option><option value="EXTEND_EXISTING">增加到当前网络</option><option value="REPLACE_EXISTING">覆盖当前网络数据（保留领域结构）</option></select></label>
+          <label>网络名称<input id="v219NetworkName" value="导入数据独立网络" maxlength="80"></label>
+          <p id="v219ModeNote">先按新网络标准画像：只识别通用维度和本次来源指标，不加载焦煤—钢铁指标目录。</p>
+        </section>
+        <section class="v217-db-connector" aria-label="自定义数据库连接器">
+          <div class="waterfall-head"><span>本地数据库连接</span><b id="v217DbState">尚未连接</b></div>
+          <div class="v217-db-form">
+            <label>数据库类型<select id="v217DbType"><option value="postgresql">PostgreSQL</option><option value="mysql">MySQL</option></select></label>
+            <label>Host<input id="v217DbHost" autocomplete="off" placeholder="127.0.0.1"></label>
+            <label>Port<input id="v217DbPort" type="number" value="5432" min="1" max="65535"></label>
+            <label>Database<input id="v217DbName" autocomplete="off" placeholder="database"></label>
+            <label>只读用户<input id="v217DbUser" autocomplete="off" placeholder="readonly_user"></label>
+            <label>密码<input id="v217DbPassword" type="password" autocomplete="new-password" placeholder="仅用于本次请求"></label>
+            <label>密码环境变量<input id="v217DbCredentialRef" autocomplete="off" placeholder="可选，例如 NEXUS_DB_PASSWORD"></label>
+            <label>Schema<input id="v217DbSchema" value="public" autocomplete="off"></label>
+            <label>SSL<select id="v217DbSsl"><option value="prefer">prefer</option><option value="require">require</option><option value="disable">disable</option></select></label>
+          </div>
+          <div class="v217-db-actions"><button id="v217DiscoverTables">发现只读表</button><button id="v217ProfileTables" disabled>画像选定表</button><button id="v215ProfilePostgres" class="secondary">工作区 PostgreSQL 预设</button><span id="v217SelectedCount">已选 0 张表</span><span id="v217ProfileProgress">画像未开始</span><strong id="v217DbFailure" role="status"></strong></div>
+          <div class="v217-db-safety"><b>仅限本地会话</b><span>密码不保存、不写日志、不进入任务哈希或数据包；连接器只执行白名单只读查询。</span></div>
+          <div id="v217DbTables"><p>连接后在这里选择允许画像的表。</p></div>
+          <div id="v217AdapterSummary" class="v219-adapter-summary"><p>画像后将为每张表建立结构化适配器。</p></div>
+        </section>
+        <section class="v218-pipeline" aria-label="实际数据推演流水线">
+          <div class="v218-title"><div><span>实际数据行 → 标准指标 → 网络 → 推演 → AI 解释</span><h2>实际数据推演流水线</h2></div><b id="v218PipelineState">等待数据源</b></div>
+          <div class="v218-steps" id="v218Steps"><div class="active">1 数据源</div><div>2 映射确认</div><div>3 指标同步</div><div>4 网络审核</div><div>5 确定性推演</div><div>6 AI解释</div></div>
+          <div class="v218-controls">
+            <label>数据截止日<input id="v218Cutoff" type="date" value="2026-05-08"></label>
+            <label>实体代码筛选（留空=全部）<input id="v218Entities" value="601088.SH,601225.SH,600188.SH,600019.SH,000708.SZ"></label>
+            <label>最大读取行数<input id="v218RowLimit" type="number" min="1" max="2000" value="300"></label>
+            <button id="v218Sync" disabled>同步已确认字段</button><button id="v218Cancel" class="secondary" disabled>取消同步</button>
+          </div>
+          <div class="v218-grid">
+            <section><div class="waterfall-head"><span>逐字段映射审核</span><b id="v218MappingProgress">0 / 0</b></div><div class="v218-toolbar"><input id="v218MappingFilter" placeholder="筛选字段或指标"><button id="v218ConfirmRules">确认全部可用候选</button><button id="v218AskAi">AI读取样例并生成中文语义</button><span id="v218AiMapState" class="v218-ai-state">仅发送字段结构、统计摘要与有限样例</span></div><div id="v218Mappings" class="v218-scroll"><p class="v218-empty">选择数据库表或上传 CSV 后开始。</p></div></section>
+            <section><div class="waterfall-head"><span>标准指标值</span><b id="v218ValueCount">0 条</b></div><div id="v218SyncSummary" class="v218-summary"><p>尚未同步实际数据。</p></div><div id="v218Values" class="v218-scroll"></div></section>
+          </div>
+          <div class="v218-grid v218-bottom">
+            <section><div class="waterfall-head"><span>网络编译与激活门禁</span><b id="v218PlanState">等待指标</b></div><div id="v219IntentSummary" class="v219-intent-summary">创建全新网络 · 不继承当前行业节点</div><div class="v218-actions"><button id="v218CreatePlan" disabled>编译网络方案</button><button id="v218GenerateEdges" disabled>AI生成关系候选</button><button id="v218ConfirmPlan" disabled>确认网络结构</button><button id="v218ActivatePlan" disabled>打开新网络</button></div><div id="v218NetworkDiff" class="v218-network"><p>同步后生成独立节点、关系、六层语义和证据缺口。</p></div></section>
+            <section><div class="waterfall-head"><span>确定性情景与解释</span><b id="v218RunState">等待网络</b></div><p id="v219ScenarioIntentNote" class="v219-scenario-intent">创建新网络时先形成数据网络；只有审核并确认产业关系后才开放情景推演。</p><div class="v218-scenario" id="v218ScenarioControls" hidden><label>焦煤价格变化（%）<input id="v218Shock" type="number" value="-10" step="1"></label><label>持续（月）<input id="v218Duration" type="number" value="12" min="1" max="60"></label><button id="v218Run" disabled>运行情景</button><button id="v218Explain" disabled>生成 AI 候选解释</button><span id="v218AiExplainState" class="v218-ai-state">等待推演</span></div><div id="v218Result" class="v218-result"><p>激活网络后运行。</p></div></section>
+          </div>
+        </section>
+        <div class="v215-data-grid"><section><div class="waterfall-head"><span>数据源画像</span><b>只读</b></div><label class="v215-file">导入 CSV / Excel / JSON / SQLite<input id="v215SourceFile" type="file" accept=".csv,.xlsx,.xls,.json,.sqlite,.db"></label><div class="v216-demo-row"><button data-v216-demo="ai">AI 字段包</button><button data-v216-demo="coal">焦煤字段包</button><button data-v216-demo="ev">新能源字段包</button></div><div id="v215SourceProfile"></div></section><section><div class="waterfall-head"><span>旧版映射预览</span><b id="v215MappingState">等待数据</b></div><div id="v215MappingTable"></div><button id="v215ApproveMappings">确认旧版预览</button></section><section><div class="waterfall-head"><span>导入规则</span><b>缺失即拒绝</b></div><label class="v216-field">导入意图<select id="v216ImportIntent"><option value="supplement">补充当前快照</option><option value="replace">替换完整快照</option><option value="new-domain">建立新领域候选</option></select></label><label class="v216-field">公司或证券代码<input id="v216CompanyHint" placeholder="可选，例如 NVDA / 601088.SH"></label><button id="v216Reanalyze">重新解析</button><div class="v216-active-import" id="v216ActiveImport"></div></section></div>
+        <div class="v216-resolution-grid"><section><div class="waterfall-head"><span>领域识别</span><b id="v216DomainState">等待数据源</b></div><div class="v216-domain-result"><span>识别领域</span><b id="v216DetectedDomain">尚未识别</b><small id="v216Action">等待审核</small></div><div id="v216ScoreList"></div></section><section><div class="waterfall-head"><span>旧版网络差异</span><b>预览</b></div><div id="v216DiffSummary"></div><div id="v216DiffLists"></div></section><section><div class="waterfall-head"><span>旧版激活门禁</span><b id="v216PackageState">受控</b></div><div id="v216GateList"></div><button id="v216ApprovePlan">确认网络差异</button><pre id="v215PackageTree"></pre><div class="v216-package-actions"><button id="v215BuildPackage">构建候选数据包</button><button id="v216ActivatePackage">激活并加载网络</button></div></section></div>
+      </section>
+
+      <section class="v215-workbench view-panel" data-view-panel="governance">
+        <div class="v215-head"><div><span>AI / TASK / GOVERNANCE</span><h1>接入调度与研究治理</h1><p>AI只生成待审核候选；任务成功不代表研究正式可用。</p></div><b>FAIL CLOSED</b></div>
+        <div class="v215-governance-grid"><section><div class="waterfall-head"><span>AI 提供商</span><b>自带密钥 / 本地模型</b></div><label>提供商<select id="v215AiProvider"><option value="disabled">关闭AI</option><option value="openai-compatible">OpenAI-compatible</option><option value="ollama">Ollama本地模型</option></select></label><label>Base URL<input id="v215AiBaseUrl" placeholder="仅保存在后端当前进程"></label><label>模型<input id="v215AiModel" placeholder="模型 ID"></label><label>API Key<input id="v215AiKey" type="password" autocomplete="off" placeholder="不写入日志或数据包"></label><label>请求超时（秒）<input id="v218AiTimeout" type="number" min="2" max="120" value="30"></label><button id="v215TestAi">真实测试连接</button><p id="v215AiState">AI 已关闭</p></section><section><div class="waterfall-head"><span>任务调度</span><b id="v215TaskState">本地</b></div><div id="v215TaskQueue"></div></section><section><div class="waterfall-head"><span>异常隔离</span><b id="v215QuarantineCount">0</b></div><div id="v215Quarantine"></div></section></div>
+        <div class="v215-contract-grid"><div><span>静态数据包运行</span><b>AVAILABLE</b><small>无AI、无数据库服务器</small></div><div><span>本地连接器</span><b>LOOPBACK ONLY</b><small>密码与原始数据留在本机</small></div><div><span>确定性运行</span><b>HASHED</b><small>领域、快照、参数和输入版本化</small></div><div><span>因果门禁</span><b>ABSTAIN</b><small>NOT_IDENTIFIED</small></div></div>
+      </section>
+
+      <aside class="research-ledger">
+        <div class="ledger-tabs"><button class="active" data-ledger="result">结果</button><button data-ledger="trace">可复算</button><button data-ledger="lineage">追溯</button><button data-ledger="audit">审计</button></div>
+        <div class="ledger-panel active" data-ledger-panel="result">
+          <span class="eyebrow">SCENARIO RESULT</span><h2 id="insightTitle">价值重新分配</h2><p class="main-insight" id="mainInsight"></p>
+          <div class="key-path"><b>关键传导路径</b><ol id="keyPath"></ol></div>
+          <div class="winner-loser"><div><span>情景市值增幅最高</span><b id="winnerName">--</b><strong id="winnerValue">--</strong></div><div><span>情景市值降幅最大</span><b id="loserName">--</b><strong id="loserValue">--</strong></div></div>
+          <div class="shock-editor"><div><span>主导冲击强度</span><output id="shockOutput">--</output></div><input id="shockSlider" type="range" min="-80" max="100" value="0"><small>-80%　　基线　　+100%</small></div>
+          <div class="phase-notes"><div><span>3M</span><p id="note3"></p></div><div><span>12M</span><p id="note12"></p></div><div><span>36M</span><p id="note36"></p></div></div>
+          <div class="invalidation"><b>失效条件</b><ul id="invalidationList"></ul></div>
+        </div>
+        <div class="ledger-panel" data-ledger-panel="lineage"><span class="eyebrow">CALCULATED LINEAGE</span><h2 id="lineageTitle">选择网络节点</h2><div class="lineage-list" id="lineageList"></div></div>
+        <div class="ledger-panel trace-ledger" data-ledger-panel="trace">
+          <span class="eyebrow">REPRODUCIBLE PATH</span>
+          <div class="trace-title"><h2 id="v24TraceCompany">NVIDIA</h2><b id="v24TraceValue">--</b></div>
+          <div class="trace-formula"><span>公司专属模型</span><strong id="v24CompanyFormula">--</strong><small>MODEL_ASSUMPTION</small></div>
+          <div class="node-shock-editor" id="v24NodeEditor">
+            <div><span>所选变量</span><b id="v24NodeLabel">--</b></div>
+            <div class="node-editor-row"><input id="v24NodeSlider" type="range" min="-80" max="100" value="0"><output id="v24NodeValue">0%</output></div>
+            <small id="v24NodeEditState">点击可编辑节点后可直接加入情景冲击</small>
+          </div>
+          <ol class="v24-trace-steps" id="v24TraceSteps"></ol>
+          <section class="v24-step-card">
+            <div class="v24-step-head"><span>STEP DETAIL</span><b id="v24StepCode">01</b></div>
+            <h3 id="v24StepTitle">--</h3>
+            <div class="v24-equation" id="v24Equation">--</div>
+            <div class="v24-params" id="v24Params"></div>
+            <div class="v24-evidence"><span id="v24EvidenceClass">--</span><b id="v24EvidenceId">--</b></div>
+            <p id="v24StepWhy">--</p>
+            <div class="v24-invalidation"><b>失效条件</b><p id="v24Invalidation">--</p></div>
+          </section>
+        </div>
+        <div class="ledger-panel" data-ledger-panel="audit">
+          <span class="eyebrow">EVIDENCE GATE</span><h2>候选数据状态</h2>
+          <div class="audit-grid"><div><span>证据 ID</span><b id="evidenceCount">0</b><small>T1 / T2 / MODEL</small></div><div><span>定位闭环</span><b id="locatorCount">0 / 0</b><small>quote + locator + hash</small></div><div><span>正式可用</span><b>NO</b><small>NEEDS HUMAN REVIEW</small></div><div><span>因果识别</span><b>ABSTAIN</b><small>NOT IDENTIFIED</small></div></div>
+          <p class="audit-warning">缺少原文摘录、页码定位、发布时间与快照哈希的来源，只能作为待核验入口；不得提升为证据闭环。</p><div class="source-register" id="sourceRegister"></div>
+          <div class="v25-contract-card"><div class="waterfall-head"><span>DATA CONTRACT / DOMAIN PACKAGE</span><b id="v25ContractStatus">CHECKING</b></div><div class="v25-contract-grid"><div><span>领域包</span><b id="v25DomainName">AI INFRASTRUCTURE</b></div><div><span>节点契约</span><b id="v25NodeStatus">--</b></div><div><span>证据缺口</span><b id="v25EvidenceStatus">--</b></div><div><span>运行清单</span><b id="v25RunStatus">--</b></div></div><p id="v25ContractNote">每次运行必须记录领域包、公司适配器、参数版本和数据截止时间。</p></div>
+          <div class="v28-db-card"><div class="waterfall-head"><span>POSTGRESQL / POINT-IN-TIME COVERAGE</span><b id="v28DbState">READ ONLY</b></div><div class="v28-db-grid"><div><span>可访问财务表</span><b id="v28DbTables">--</b></div><div><span>首期五家公司</span><b id="v28DbCoverage">--</b></div><div><span>数据截止时间</span><b id="v28DbCutoff">--</b></div><div><span>优先报表类型</span><b id="v28DbStatement">--</b></div></div><div class="v28-target-list" id="v28TargetList"></div><p id="v28DbNote">公告日期与 opdate 均不得晚于数据截止时间。</p></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer><span>NEXUS V2.20 · V2.19.13 冻结基线</span><p>数据、图结构和情景传播分别门禁；候选关系不冒充正式因果。</p><b>本地凭据 · CANDIDATE FIRST</b></footer>
+  </div>
+  <button class="v210-backdrop" id="v210Backdrop" type="button" aria-label="关闭公司财务传导" hidden></button>
+  <aside class="v210-drawer" id="v210Drawer" aria-hidden="true" aria-labelledby="v210Company">
+    <header class="v210-head">
+      <div><span>COMPANY FINANCIAL TRANSMISSION</span><h2 id="v210Company">--</h2><small id="v210Ticker">--</small></div>
+      <button class="v210-close" id="v210Close" type="button" aria-label="关闭公司财务传导" title="关闭">×</button>
+    </header>
+    <div class="v210-gate">
+      <span>情景估值证据门禁</span><b id="v210Gate">CANDIDATE_VALUATION</b>
+      <small>市值变化由候选行情、财务底座和情景模型计算，可复算但尚待人工交叉核验；不是目标价或投资建议。</small>
+    </div>
+    <div class="v210-context">
+      <div><span>公司专属经营模型</span><b id="v210Formula">--</b></div>
+      <div><span>敏感性区间</span><b id="v210Range">--</b></div>
+    </div>
+    <div class="v210-steps" id="v210Steps" aria-label="公司财务传导步骤"></div>
+    <section class="v210-detail" aria-live="polite">
+      <div class="v210-detail-head"><div><span>STEP INSPECTOR</span><h3 id="v210DetailTitle">--</h3></div><b class="v210-detail-value" id="v210DetailValue">--</b></div>
+      <div class="v210-equation" id="v210Equation">--</div>
+      <div class="v210-evidence"><span>计算 / 证据分类</span><b id="v210EvidenceClass">--</b><span>谱系 ID</span><b id="v210EvidenceId">--</b></div>
+      <p id="v210Why">--</p>
+      <div class="v210-invalidation"><span>失效条件</span><p id="v210Invalidation">--</p></div>
+    </section>
+    <div class="v210-actions"><button id="v210OpenCompanyModel" type="button">打开完整公司模型</button><button id="v210CloseBottom" type="button">返回网络</button></div>
+  </aside>
+  <script src="domain-loader.js?v=2.17.0"></script>
+  <script src="v216-domain-resolver.js?v=2.17.0"></script>
+  <script src="v216-runtime-overlay.js?v=2.17.0"></script>
+  <script src="mock-adapter.js?v=2.19.12"></script>
+  <script src="service-client.js?v=2.19.12"></script>
+  <script src="graph-compiler.js?v=2.17.0"></script>
+  <script src="active-domain.js?v=2.17.0"></script>
+  <script src="market-valuation-data.js?v=2.17.0"></script>
+  <script src="market-valuation-engine.js?v=2.17.0"></script>
+  <script src="run-manifest.js?v=2.17.0"></script>
+  <script src="v217-run-manifest.js?v=2.17.0"></script>
+  <script src="v218-run-manifest.js?v=2.19.0"></script>
+  <script src="v219-field-labels.js?v=2.19.12"></script>
+  <script src="app.js?v=2.20.1"></script>
+  <script src="v24-enhancements.js?v=2.19.17"></script>
+  <script src="v25-ui.js?v=2.17.0"></script>
+  <script src="v27-playback.js?v=2.19.12"></script>
+  <script src="v28-ui.js?v=2.19.19"></script>
+  <script src="v29-ui.js?v=2.19.17"></script>
+  <script src="v210-financial-drawer.js?v=2.19.17"></script>
+  <script src="v212-domain-ui.js?v=2.19.12"></script>
+  <script src="v214-market-value-ui.js?v=2.19.17"></script>
+  <script src="v216-workbench.js?v=2.19.19"></script>
+  <script src="v217-db-ui.js?v=2.19.12"></script>
+  <script src="v218-pipeline-ui.js?v=2.19.14"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+(async()=>{
+  const assert=require('node:assert/strict'),debug='http://127.0.0.1:9224';
+  const target=await (await fetch(debug+'/json/new?'+encodeURIComponent('http://127.0.0.1:4180/?domain=coal-steel&view=data&v=2.19.1'),{method:'PUT'})).json();
+  const ws=new WebSocket(target.webSocketDebuggerUrl),pending=new Map();let sequence=0;
+  await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true})});
+  ws.addEventListener('message',(event)=>{const message=JSON.parse(event.data);if(message.id&&pending.has(message.id)){const job=pending.get(message.id);pending.delete(message.id);message.error?job.reject(new Error(message.error.message)):job.resolve(message.result)}});
+  const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+  const evaluate=async(expression)=>{const result=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description||result.exceptionDetails.text);return result.result.value};
+  const waitFor=async(expression,timeout=20000)=>{const started=Date.now();while(Date.now()-started<timeout){if(await evaluate(expression))return;await new Promise((resolve)=>setTimeout(resolve,100))}throw new Error('WAIT_TIMEOUT: '+expression+' / '+await evaluate("document.getElementById('v217DbState')?.textContent+' / '+document.getElementById('v217DbFailure')?.textContent"))};
+  await send('Runtime.enable');await send('Page.enable');
+  await waitFor("document.readyState==='complete'&&Boolean(window.NEXUS_V217_DB_UI)");
+  await evaluate("(()=>{const set=(id,value)=>document.getElementById(id).value=value;set('v217DbHost','rsshub.weixiewen.cn');set('v217DbPort','5589');set('v217DbName','pg');set('v217DbUser','dwzq');set('v217DbSchema','public');set('v217DbSsl','prefer');document.getElementById('v217DiscoverTables').click();return true})()");
+  await waitFor("document.getElementById('v217DbState').textContent.includes('已发现数据表')");
+  const tables=await evaluate("[...document.querySelectorAll('[data-v217-table]')].map(x=>x.value)");
+  assert.deepEqual(tables.sort(),['asharebalancesheet','asharecashflow','ashareincome']);
+  await evaluate("[...document.querySelectorAll('[data-v217-table]')].forEach(x=>{x.checked=true;x.dispatchEvent(new Event('change',{bubbles:true}))});document.getElementById('v217ProfileTables').click();true");
+  await waitFor("['连接正常 · 画像完成','连接正常 · 画像失败'].includes(document.getElementById('v217DbState').textContent)",30000);
+  const state=await evaluate("(()=>({state:document.getElementById('v217DbState').textContent,progress:document.getElementById('v217ProfileProgress').textContent,selected:document.getElementById('v217SelectedCount').textContent,adapters:[...document.querySelectorAll('.v219-adapter-row')].map(x=>x.textContent),failure:document.getElementById('v217DbFailure').textContent,mappings:window.NEXUS_V218_PIPELINE.state.mappings.length}))()");
+  assert.equal(state.state,'连接正常 · 画像完成');
+  assert.equal(state.progress,'画像完成 3 / 3');
+  assert.equal(state.selected,'已选 3 张表');
+  assert.equal(state.adapters.length,3);
+  assert.ok(state.adapters.every((item)=>item.includes('DRIVER_ESCAPED')&&item.includes('STRUCTURED_LOCATOR')));
+  assert.equal(state.failure,'');
+  assert.ok(state.mappings>400);
+  console.log('V2.19 real database browser adapter tests: 8/8 passed '+JSON.stringify(state));
+  ws.close();await fetch(debug+'/json/close/'+target.id);
+})().catch((error)=>{console.error(error);process.exitCode=1});

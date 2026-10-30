@@ -1,0 +1,182 @@
+{
+  "contract_version": "nexus-crawler-batch-1.0.0",
+  "network": {
+    "network_id": "NETWORK-DEMO-INDUSTRY",
+    "domain_code": "DEMO_INDUSTRY",
+    "network_name": "示例行业复合传导网络",
+    "network_version": "2026.09.16",
+    "network_kind": "INDUSTRY_COMPOSITE",
+    "network_status": "CANDIDATE",
+    "data_cutoff": "2026-09-16",
+    "causal_status": "ABSTAIN"
+  },
+  "batch": {
+    "batch_id": "BATCH-DEMO-20260916",
+    "domain_code": "DEMO_INDUSTRY",
+    "collector_code": "DEMO_DAILY_COLLECTOR",
+    "collector_version": "1.0.0",
+    "started_at": "2026-09-16T16:15:00Z",
+    "completed_at": "2026-09-16T16:16:00Z",
+    "data_cutoff": "2026-09-16",
+    "run_type": "DAILY",
+    "status": "SUCCEEDED"
+  },
+  "sources": [
+    {
+      "source_code": "DEMO_OFFICIAL_API",
+      "source_name": "示例官方数据接口",
+      "source_type": "API",
+      "publisher": "示例发布机构",
+      "base_url": "https://example.invalid/api",
+      "source_tier": "T1",
+      "license_status": "ALLOWED",
+      "status": "ACTIVE"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "DOC-DEMO-20260916",
+      "batch_id": "BATCH-DEMO-20260916",
+      "source_code": "DEMO_OFFICIAL_API",
+      "source_url": "https://example.invalid/api/daily/2026-09-16",
+      "canonical_url": "https://example.invalid/api/daily/2026-09-16",
+      "title": "示例行业每日数据",
+      "published_at": "2026-09-16T08:00:00Z",
+      "retrieved_at": "2026-09-16T16:15:10Z",
+      "content_type": "application/json",
+      "http_status": 200,
+      "content_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "snapshot_path": "raw/2026/09/16/demo.json",
+      "language": "zh-CN",
+      "encoding": "utf-8",
+      "parser_version": "1.0.0",
+      "parse_status": "PARSED"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EVD-DEMO-INPUT",
+      "document_id": "DOC-DEMO-20260916",
+      "source_type": "API",
+      "source_tier": "T1",
+      "published_at": "2026-09-16T08:00:00Z",
+      "retrieved_at": "2026-09-16T16:15:10Z",
+      "original_quote": "input_price=108.5",
+      "locator": "JSON:/data/input_price",
+      "json_pointer": "/data/input_price",
+      "anchor_at": "2026-09-16T08:00:00Z",
+      "temporal_role": "SOURCE_FACT",
+      "snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "acceptance_status": "ACCEPTED",
+      "acceptance_reason": "官方接口直接披露"
+    },
+    {
+      "evidence_id": "EVD-DEMO-COST",
+      "document_id": "DOC-DEMO-20260916",
+      "source_type": "API",
+      "source_tier": "T1",
+      "published_at": "2026-09-16T08:00:00Z",
+      "retrieved_at": "2026-09-16T16:15:10Z",
+      "original_quote": "operating_cost=72.0",
+      "locator": "JSON:/data/operating_cost",
+      "json_pointer": "/data/operating_cost",
+      "anchor_at": "2026-09-16T08:00:00Z",
+      "temporal_role": "SOURCE_FACT",
+      "snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "acceptance_status": "ACCEPTED",
+      "acceptance_reason": "官方接口直接披露"
+    },
+    {
+      "evidence_id": "EVD-DEMO-MARGIN",
+      "document_id": "DOC-DEMO-20260916",
+      "source_type": "API",
+      "source_tier": "T1",
+      "published_at": "2026-09-16T08:00:00Z",
+      "retrieved_at": "2026-09-16T16:15:10Z",
+      "original_quote": "profit_margin=18.2",
+      "locator": "JSON:/data/profit_margin",
+      "json_pointer": "/data/profit_margin",
+      "anchor_at": "2026-09-16T08:00:00Z",
+      "temporal_role": "SOURCE_FACT",
+      "snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "acceptance_status": "ACCEPTED",
+      "acceptance_reason": "官方接口直接披露"
+    }
+  ],
+  "layers": [
+    {"layer_no": 1, "layer_code": "EXTERNAL_INPUT", "layer_name": "外部输入", "path_role": "SOURCE", "sort_order": 10, "status": "ACTIVE"},
+    {"layer_no": 2, "layer_code": "OPERATIONS", "layer_name": "经营过程", "path_role": "INTERMEDIATE", "sort_order": 20, "status": "ACTIVE"},
+    {"layer_no": 3, "layer_code": "FINANCIAL_RESULT", "layer_name": "财务结果", "path_role": "SINK", "sort_order": 30, "status": "ACTIVE"}
+  ],
+  "entities": [
+    {
+      "entity_code": "DEMO_INDUSTRY_TOTAL",
+      "entity_name": "示例行业整体",
+      "entity_type": "INDUSTRY",
+      "country": "CN",
+      "currency": "CNY",
+      "aliases": ["示例行业"],
+      "status": "ACTIVE"
+    }
+  ],
+  "metric_definitions": [
+    {
+      "metric_code": "INPUT_PRICE_INDEX",
+      "metric_name": "投入品价格指数",
+      "description": "行业主要投入品的标准化价格指数",
+      "metric_type": "INDEX",
+      "canonical_unit": "index",
+      "unit_family": "INDEX",
+      "frequency": "DAILY",
+      "entity_scope": "INDUSTRY",
+      "default_layer_code": "EXTERNAL_INPUT",
+      "editable_default": true,
+      "required_for_network": true,
+      "contract_version": "nexus-crawler-batch-1.0.0",
+      "status": "ACTIVE"
+    },
+    {
+      "metric_code": "OPERATING_COST_INDEX",
+      "metric_name": "经营成本指数",
+      "description": "行业经营成本标准化指数",
+      "metric_type": "INDEX",
+      "canonical_unit": "index",
+      "unit_family": "INDEX",
+      "frequency": "DAILY",
+      "entity_scope": "INDUSTRY",
+      "default_layer_code": "OPERATIONS",
+      "editable_default": false,
+      "required_for_network": true,
+      "contract_version": "nexus-crawler-batch-1.0.0",
+      "status": "ACTIVE"
+    },
+    {
+      "metric_code": "PROFIT_MARGIN",
+      "metric_name": "利润率",
+      "description": "行业利润率",
+      "metric_type": "RATIO",
+      "canonical_unit": "%",
+      "unit_family": "PERCENT",
+      "frequency": "DAILY",
+      "entity_scope": "INDUSTRY",
+      "default_layer_code": "FINANCIAL_RESULT",
+      "editable_default": false,
+      "required_for_network": true,
+      "contract_version": "nexus-crawler-batch-1.0.0",
+      "status": "ACTIVE"
+    }
+  ],
+  "observations": [
+    {"observation_id": "OBS-DEMO-INPUT", "metric_code": "INPUT_PRICE_INDEX", "entity_code": "DEMO_INDUSTRY_TOTAL", "value": 108.5, "unit": "index", "frequency": "DAILY", "as_of_date": "2026-09-16", "available_at": "2026-09-16T08:00:00Z", "data_cutoff": "2026-09-16", "dimensions": {}, "revision": 1, "quality_status": "SOURCE_FACT", "evidence_id": "EVD-DEMO-INPUT", "source_table": "data", "source_column": "input_price", "source_row_key": "2026-09-16"},
+    {"observation_id": "OBS-DEMO-COST", "metric_code": "OPERATING_COST_INDEX", "entity_code": "DEMO_INDUSTRY_TOTAL", "value": 72.0, "unit": "index", "frequency": "DAILY", "as_of_date": "2026-09-16", "available_at": "2026-09-16T08:00:00Z", "data_cutoff": "2026-09-16", "dimensions": {}, "revision": 1, "quality_status": "SOURCE_FACT", "evidence_id": "EVD-DEMO-COST", "source_table": "data", "source_column": "operating_cost", "source_row_key": "2026-09-16"},
+    {"observation_id": "OBS-DEMO-MARGIN", "metric_code": "PROFIT_MARGIN", "entity_code": "DEMO_INDUSTRY_TOTAL", "value": 18.2, "unit": "%", "frequency": "DAILY", "as_of_date": "2026-09-16", "available_at": "2026-09-16T08:00:00Z", "data_cutoff": "2026-09-16", "dimensions": {}, "revision": 1, "quality_status": "SOURCE_FACT", "evidence_id": "EVD-DEMO-MARGIN", "source_table": "data", "source_column": "profit_margin", "source_row_key": "2026-09-16"}
+  ],
+  "formulas": [
+    {"formula_id": "FORMULA-INPUT-COST", "formula_name": "投入品价格到经营成本", "formula_type": "LINEAR_WEIGHT", "formula_expression": "target_pct = source_pct * weight", "parameters": {"candidate_weight": 0.65}, "parameter_status": "AI_ASSUMPTION", "causal_conclusion": "ABSTAIN", "evidence_ids": ["EVD-DEMO-INPUT", "EVD-DEMO-COST"], "status": "ACTIVE"},
+    {"formula_id": "FORMULA-COST-MARGIN", "formula_name": "经营成本到利润率", "formula_type": "LINEAR_WEIGHT", "formula_expression": "target_pct = source_pct * weight", "parameters": {"candidate_weight": 0.45}, "parameter_status": "AI_ASSUMPTION", "causal_conclusion": "ABSTAIN", "evidence_ids": ["EVD-DEMO-COST", "EVD-DEMO-MARGIN"], "status": "ACTIVE"}
+  ],
+  "relations": [
+    {"relation_id": "REL-INPUT-COST", "source_metric_code": "INPUT_PRICE_INDEX", "target_metric_code": "OPERATING_COST_INDEX", "direction": "positive", "relation_type": "COST_PASS_THROUGH", "formula_id": "FORMULA-INPUT-COST", "entity_scope": "DEMO_INDUSTRY_TOTAL", "candidate_weight": 0.65, "lag_days": 7, "confidence": 0.7, "impact_cap_pct": 30, "status": "AI_APPROVED", "parameter_status": "AI_ASSUMPTION", "mechanism": "投入品价格变化按候选传导系数影响经营成本", "evidence_ids": ["EVD-DEMO-INPUT", "EVD-DEMO-COST"], "invalidation": "行业投入结构发生重大变化"},
+    {"relation_id": "REL-COST-MARGIN", "source_metric_code": "OPERATING_COST_INDEX", "target_metric_code": "PROFIT_MARGIN", "direction": "negative", "relation_type": "MARGIN_PRESSURE", "formula_id": "FORMULA-COST-MARGIN", "entity_scope": "DEMO_INDUSTRY_TOTAL", "candidate_weight": 0.45, "lag_days": 0, "confidence": 0.65, "impact_cap_pct": 20, "status": "AI_APPROVED", "parameter_status": "AI_ASSUMPTION", "mechanism": "成本上升压缩利润率", "evidence_ids": ["EVD-DEMO-COST", "EVD-DEMO-MARGIN"], "invalidation": "产品售价完全同步调整"}
+  ]
+}

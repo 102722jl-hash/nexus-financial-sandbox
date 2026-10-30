@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexus.local/contracts/nexus-crawler-batch-1.0.0.schema.json",
+  "title": "NEXUS Crawler Batch 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version", "network", "batch", "sources", "documents", "evidence", "layers",
+    "entities", "metric_definitions", "observations", "formulas", "relations"
+  ],
+  "properties": {
+    "contract_version": {"const": "nexus-crawler-batch-1.0.0"},
+    "network": {"$ref": "#/$defs/network"},
+    "batch": {"$ref": "#/$defs/batch"},
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+    "documents": {"type": "array", "items": {"$ref": "#/$defs/document"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "layers": {"type": "array", "items": {"$ref": "#/$defs/layer"}},
+    "entities": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "metric_definitions": {"type": "array", "items": {"$ref": "#/$defs/metric_definition"}},
+    "observations": {"type": "array", "items": {"$ref": "#/$defs/observation"}},
+    "formulas": {"type": "array", "items": {"$ref": "#/$defs/formula"}},
+    "relations": {"type": "array", "items": {"$ref": "#/$defs/relation"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "date": {"type": "string", "format": "date"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["network_id", "domain_code", "network_name", "network_version", "network_kind", "network_status", "data_cutoff", "causal_status"],
+      "properties": {
+        "network_id": {"$ref": "#/$defs/id"},
+        "domain_code": {"$ref": "#/$defs/id"},
+        "network_name": {"type": "string", "minLength": 1},
+        "network_version": {"type": "string", "minLength": 1},
+        "network_kind": {"type": "string", "minLength": 1},
+        "network_status": {"enum": ["DRAFT", "CANDIDATE", "ACTIVE", "FROZEN", "DISABLED"]},
+        "data_cutoff": {"$ref": "#/$defs/date"},
+        "causal_status": {"enum": ["ABSTAIN", "CONDITIONAL", "IDENTIFIED"]}
+      }
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["batch_id", "domain_code", "collector_code", "collector_version", "started_at", "completed_at", "data_cutoff", "run_type", "status"],
+      "properties": {
+        "batch_id": {"$ref": "#/$defs/id"},
+        "domain_code": {"$ref": "#/$defs/id"},
+        "collector_code": {"$ref": "#/$defs/id"},
+        "collector_version": {"type": "string", "minLength": 1},
+        "started_at": {"$ref": "#/$defs/timestamp"},
+        "completed_at": {"$ref": "#/$defs/timestamp"},
+        "data_cutoff": {"$ref": "#/$defs/date"},
+        "run_type": {"enum": ["DAILY", "BACKFILL", "MANUAL", "REPAIR"]},
+        "status": {"enum": ["SUCCEEDED", "PARTIAL", "FAILED"]},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "error_summary": {"type": "object"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_code", "source_name", "source_type", "publisher", "base_url", "source_tier", "license_status", "status"],
+      "properties": {
+        "source_code": {"$ref": "#/$defs/id"},
+        "source_name": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["WEB", "API", "CSV", "PDF", "DATABASE"]},
+        "publisher": {"type": "string", "minLength": 1},
+        "base_url": {"type": "string", "minLength": 1},
+        "source_tier": {"enum": ["T1", "T2", "T3", "MARKET_PROXY"]},
+        "license_status": {"enum": ["ALLOWED", "RESTRICTED", "UNKNOWN"]},
+        "robots_policy": {"type": ["string", "null"]},
+        "rate_limit_per_minute": {"type": ["integer", "null"], "minimum": 1},
+        "status": {"enum": ["ACTIVE", "PAUSED", "DISABLED"]}
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_id", "batch_id", "source_code", "source_url", "canonical_url", "retrieved_at", "content_type", "http_status", "content_sha256", "parse_status"],
+      "anyOf": [{"required": ["snapshot_path"]}, {"required": ["raw_payload"]}],
+      "properties": {
+        "document_id": {"$ref": "#/$defs/id"},
+        "batch_id": {"$ref": "#/$defs/id"},
+        "source_code": {"$ref": "#/$defs/id"},
+        "source_url": {"type": "string", "minLength": 1},
+        "canonical_url": {"type": "string", "minLength": 1},
+        "title": {"type": ["string", "null"]},
+        "published_at": {"oneOf": [{"$ref": "#/$defs/timestamp"}, {"type": "null"}]},
+        "retrieved_at": {"$ref": "#/$defs/timestamp"},
+        "content_type": {"type": "string", "minLength": 1},
+        "http_status": {"type": "integer", "minimum": 100, "maximum": 599},
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "snapshot_path": {"type": ["string", "null"]},
+        "raw_payload": {},
+        "language": {"type": ["string", "null"]},
+        "encoding": {"type": ["string", "null"]},
+        "etag": {"type": ["string", "null"]},
+        "last_modified": {"type": ["string", "null"]},
+        "parser_version": {"type": ["string", "null"]},
+        "parse_status": {"enum": ["FETCHED", "PARSED", "NEEDS_REVIEW", "QUARANTINED", "ERROR"]},
+        "error_code": {"type": ["string", "null"]},
+        "error_message": {"type": ["string", "null"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "document_id", "source_type", "source_tier", "original_quote", "locator", "retrieved_at", "anchor_at", "temporal_role", "snapshot_sha256", "acceptance_status", "acceptance_reason"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/id"},
+        "document_id": {"$ref": "#/$defs/id"},
+        "source_type": {"enum": ["WEB", "API", "CSV", "PDF", "DATABASE"]},
+        "source_tier": {"enum": ["T1", "T2", "T3", "MARKET_PROXY"]},
+        "published_at": {"oneOf": [{"$ref": "#/$defs/timestamp"}, {"type": "null"}]},
+        "retrieved_at": {"$ref": "#/$defs/timestamp"},
+        "original_quote": {"type": "string", "minLength": 1},
+        "locator": {"type": "string", "minLength": 1},
+        "page_number": {"type": ["integer", "null"], "minimum": 1},
+        "table_name": {"type": ["string", "null"]},
+        "row_label": {"type": ["string", "null"]},
+        "column_label": {"type": ["string", "null"]},
+        "json_pointer": {"type": ["string", "null"]},
+        "anchor_at": {"$ref": "#/$defs/timestamp"},
+        "temporal_role": {"enum": ["SOURCE_FACT", "PRE_EVENT", "AT_EVENT", "POST_EVENT_VALIDATION", "UNDATED"]},
+        "snapshot_sha256": {"$ref": "#/$defs/sha256"},
+        "acceptance_status": {"enum": ["ACCEPTED", "AI_APPROVED", "PENDING_REVIEW", "REJECTED"]},
+        "acceptance_reason": {"type": "string", "minLength": 1},
+        "reviewed_by": {"type": ["string", "null"]},
+        "reviewed_at": {"oneOf": [{"$ref": "#/$defs/timestamp"}, {"type": "null"}]}
+      }
+    },
+    "layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layer_no", "layer_code", "layer_name", "path_role", "sort_order"],
+      "properties": {
+        "layer_no": {"type": "integer", "minimum": 1},
+        "layer_code": {"$ref": "#/$defs/id"},
+        "layer_name": {"type": "string", "minLength": 1},
+        "layer_subtitle": {"type": ["string", "null"]},
+        "path_role": {"enum": ["SOURCE", "INTERMEDIATE", "SINK", "EVIDENCE_ONLY"]},
+        "sort_order": {"type": "integer", "minimum": 0},
+        "status": {"enum": ["ACTIVE", "DISABLED"]}
+      }
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity_code", "entity_name", "entity_type", "status"],
+      "properties": {
+        "entity_code": {"$ref": "#/$defs/id"},
+        "entity_name": {"type": "string", "minLength": 1},
+        "entity_type": {"enum": ["COMPANY", "INDUSTRY", "COMMODITY", "REGION", "MACRO", "POLICY", "MARKET"]},
+        "parent_entity_code": {"type": ["string", "null"]},
+        "stock_code": {"type": ["string", "null"]},
+        "exchange_code": {"type": ["string", "null"]},
+        "industry_code": {"type": ["string", "null"]},
+        "country": {"type": ["string", "null"]},
+        "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+        "aliases": {"type": "array", "items": {"type": "string"}},
+        "valid_from": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "valid_to": {"oneOf": [{"$ref": "#/$defs/date"}, {"type": "null"}]},
+        "status": {"enum": ["ACTIVE", "INACTIVE", "MERGED", "DELISTED"]}
+      }
+    },
+    "metric_definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric_code", "metric_name", "metric_type", "canonical_unit", "unit_family", "frequency", "entity_scope", "default_layer_code", "editable_default", "status"],
+      "properties": {
+        "metric_code": {"$ref": "#/$defs/id"},
+        "metric_name": {"type": "string", "minLength": 1},
+        "aliases": {"type": "array", "items": {"type": "string"}},
+        "description": {"type": "string"},
+        "metric_type": {"enum": ["FLOW", "STOCK", "PRICE", "RATIO", "AMOUNT", "COUNT", "INDEX", "TEXT_SIGNAL"]},
+        "canonical_unit": {"type": "string", "minLength": 1},
+        "unit_family": {"enum": ["CURRENCY", "COUNT", "MASS", "ENERGY", "POWER", "PERCENT", "PRICE", "INDEX", "TEXT", "OTHER"]},
+        "frequency": {"enum": ["REALTIME", "DAILY", "WEEKLY", "MONTHLY", "QUARTERLY", "ANNUAL", "EVENT"]},
+        "entity_scope": {"enum": ["GLOBAL", "INDUSTRY", "ENTITY", "COMPANY", "REGION", "COMMODITY"]},
+        "default_layer_code": {"$ref": "#/$defs/id"},
+        "editable_default": {"type": "boolean"},
+        "aggregation_method": {"type": ["string", "null"]},
+        "value_min": {"type": ["number", "null"]},
+        "value_max": {"type": ["number", "null"]},
+        "currency_policy": {"type": ["string", "null"]},
+        "required_for_network": {"type": "boolean"},
+        "contract_version": {"const": "nexus-crawler-batch-1.0.0"},
+        "status": {"enum": ["ACTIVE", "DEPRECATED", "DISABLED"]}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation_id", "metric_code", "unit", "as_of_date", "available_at", "data_cutoff", "evidence_id", "quality_status", "source_row_key", "revision"],
+      "oneOf": [{"required": ["value"]}, {"required": ["text_value"]}],
+      "properties": {
+        "observation_id": {"$ref": "#/$defs/id"},
+        "metric_code": {"$ref": "#/$defs/id"},
+        "entity_code": {"type": ["string", "null"]},
+        "value": {"type": "number"},
+        "text_value": {"type": "string"},
+        "unit": {"type": "string", "minLength": 1},
+        "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+        "frequency": {"enum": ["REALTIME", "DAILY", "WEEKLY", "MONTHLY", "QUARTERLY", "ANNUAL", "EVENT"]},
+        "report_period": {"type": ["string", "null"]},
+        "as_of_date": {"$ref": "#/$defs/date"},
+        "published_at": {"oneOf": [{"$ref": "#/$defs/timestamp"}, {"type": "null"}]},
+        "available_at": {"$ref": "#/$defs/timestamp"},
+        "data_cutoff": {"$ref": "#/$defs/date"},
+        "dimensions": {"type": "object"},
+        "revision": {"type": "integer", "minimum": 1},
+        "quality_status": {"enum": ["SOURCE_FACT", "REPORTED_ACTUAL", "MARKET_PROXY", "AI_EXTRACTED", "CALCULATED_LINEAGE", "PENDING_REVIEW", "REJECTED"]},
+        "evidence_id": {"$ref": "#/$defs/id"},
+        "source_table": {"type": ["string", "null"]},
+        "source_column": {"type": ["string", "null"]},
+        "source_row_key": {"type": "string", "minLength": 1}
+      }
+    },
+    "formula": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["formula_id", "formula_type", "formula_expression", "parameters", "parameter_status", "causal_conclusion", "status"],
+      "properties": {
+        "formula_id": {"$ref": "#/$defs/id"},
+        "formula_name": {"type": "string"},
+        "formula_type": {"type": "string", "minLength": 1},
+        "formula_expression": {"type": "string", "minLength": 1},
+        "parameters": {"type": "object"},
+        "parameter_status": {"enum": ["CALIBRATED", "HUMAN_CONFIRMED", "CALCULATED_LINEAGE", "AI_ASSUMPTION", "MISSING"]},
+        "causal_conclusion": {"enum": ["ABSTAIN", "CONDITIONAL", "IDENTIFIED"]},
+        "evidence_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "status": {"enum": ["ACTIVE", "NEEDS_REVIEW", "DISABLED"]}
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relation_id", "source_metric_code", "target_metric_code", "direction", "relation_type", "formula_id", "status", "parameter_status", "mechanism"],
+      "properties": {
+        "relation_id": {"$ref": "#/$defs/id"},
+        "source_metric_code": {"$ref": "#/$defs/id"},
+        "target_metric_code": {"$ref": "#/$defs/id"},
+        "direction": {"enum": ["positive", "negative", "mixed"]},
+        "relation_type": {"type": "string", "minLength": 1},
+        "formula_id": {"$ref": "#/$defs/id"},
+        "entity_scope": {"type": ["string", "null"]},
+        "weight": {"oneOf": [{"type": "number", "exclusiveMinimum": 0}, {"type": "null"}]},
+        "candidate_weight": {"oneOf": [{"type": "number", "exclusiveMinimum": 0}, {"type": "null"}]},
+        "lag_days": {"type": "integer", "minimum": 0},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "impact_cap_pct": {"type": ["number", "null"], "minimum": 0},
+        "status": {"enum": ["CONFIRMED", "AI_APPROVED", "CANDIDATE", "NEEDS_HUMAN_REVIEW", "DISABLED"]},
+        "parameter_status": {"enum": ["CALIBRATED", "HUMAN_CONFIRMED", "CALCULATED_LINEAGE", "AI_ASSUMPTION", "MISSING"]},
+        "mechanism": {"type": "string", "minLength": 1},
+        "evidence_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "invalidation": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

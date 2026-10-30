@@ -1,0 +1,9 @@
+{
+  "host": "127.0.0.1",
+  "port": 5432,
+  "database": "your_database",
+  "schema": "coal_network",
+  "user": "coal_network_readonly",
+  "password": "填写到模型界面本次请求，不要保存",
+  "network_id": "coal_power_v1"
+}

@@ -1,0 +1,44 @@
+# ---------- 凭据（绝不提交） ----------
+*.dpapi.json
+.postgres-secrets*.json
+*.pem
+.env
+
+# ---------- 数据库文件 ----------
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# ---------- 采集产物 / 原始快照 ----------
+raw/
+snapshots/
+standard_batches/
+package_export/
+package_versions/
+logs/
+staging/
+*.db.before_*
+
+# ---------- 生成的报告 ----------
+*_report.json
+validation_report.json
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+.venv*/
+venv/
+*.egg-info/
+
+# ---------- Node ----------
+node_modules/
+
+# ---------- 系统 / 编辑器 ----------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+*.tmp

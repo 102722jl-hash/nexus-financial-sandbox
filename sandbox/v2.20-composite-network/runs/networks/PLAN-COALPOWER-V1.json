@@ -1,0 +1,3855 @@
+{
+  "schemaVersion": "generated-network-registry-1.0.0",
+  "ownerClientId": "LOCAL-COAL-NETWORK",
+  "networkId": "PLAN-COALPOWER-V1",
+  "networkPlanId": "PLAN-COALPOWER-V1",
+  "networkName": "煤炭-电力经营-财务-现金流-估值多链路传导网络",
+  "networkKind": "PRECOMPILED_NETWORK",
+  "outputLevel": "SCENARIO_PATH_ONLY",
+  "layerLabels": [
+    {
+      "id": "macro_policy",
+      "code": "macro_policy",
+      "layerNo": 1,
+      "label": "宏观与政策",
+      "subtitle": "IMPORTED LAYER",
+      "sortOrder": 1.0
+    },
+    {
+      "id": "coal_supply",
+      "code": "coal_supply",
+      "layerNo": 2,
+      "label": "煤炭供需",
+      "subtitle": "IMPORTED LAYER",
+      "sortOrder": 2.0
+    },
+    {
+      "id": "coal_price",
+      "code": "coal_price",
+      "layerNo": 3,
+      "label": "动力煤价格",
+      "subtitle": "IMPORTED LAYER",
+      "sortOrder": 3.0
+    },
+    {
+      "id": "power_operation",
+      "code": "power_operation",
+      "layerNo": 4,
+      "label": "火电经营",
+      "subtitle": "IMPORTED LAYER",
+      "sortOrder": 4.0
+    },
+    {
+      "id": "company_finance",
+      "code": "company_finance",
+      "layerNo": 5,
+      "label": "公司财务",
+      "subtitle": "IMPORTED LAYER",
+      "sortOrder": 5.0
+    },
+    {
+      "id": "valuation",
+      "code": "valuation",
+      "layerNo": 6,
+      "label": "估值与市场表现",
+      "subtitle": "IMPORTED LAYER",
+      "sortOrder": 6.0
+    }
+  ],
+  "nodes": [
+    {
+      "nodeId": "node_d9086beaecff2540c5",
+      "layer": "valuation",
+      "layerNo": 6,
+      "label": "国电电力 · 市场价格代理",
+      "sub": "市场价格代理",
+      "description": "由已接受指标或市场代理生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "CLOSE_PRICE"
+      ],
+      "baseline": {
+        "BASE": 5.27,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "CLOSE_PRICE": 5.27
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元/股",
+      "valueStatus": "MARKET_PROXY",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_4b4ff71f147c7397e92cd8a1"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-09-10",
+      "dataCutoff": "2026-09-10"
+    },
+    {
+      "nodeId": "node_fef17fb883c8a3c30a",
+      "layer": "valuation",
+      "layerNo": 6,
+      "label": "华电国际 · 市场价格代理",
+      "sub": "市场价格代理",
+      "description": "由已接受指标或市场代理生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "CLOSE_PRICE"
+      ],
+      "baseline": {
+        "BASE": 4.88,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "CLOSE_PRICE": 4.88
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元/股",
+      "valueStatus": "MARKET_PROXY",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_ade109078d0edbb5545e987b"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-09-10",
+      "dataCutoff": "2026-09-10"
+    },
+    {
+      "nodeId": "node_0e3d385369c6ea7eba",
+      "layer": "valuation",
+      "layerNo": 6,
+      "label": "华能国际 · 市场价格代理",
+      "sub": "市场价格代理",
+      "description": "由已接受指标或市场代理生成的候选节点",
+      "entityCode": "600011.SH",
+      "metricCodes": [
+        "CLOSE_PRICE"
+      ],
+      "baseline": {
+        "BASE": 6.95,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "CLOSE_PRICE": 6.95
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元/股",
+      "valueStatus": "MARKET_PROXY",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_9b97edae392854f8fbd3c769"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-09-10",
+      "dataCutoff": "2026-09-10"
+    },
+    {
+      "nodeId": "node_0c9f80e0259a518d92",
+      "layer": "coal_price",
+      "layerNo": 3,
+      "label": "动力煤5000K价格",
+      "sub": "动力煤5000K价格",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": null,
+      "metricCodes": [
+        "COAL_PRICE_5000"
+      ],
+      "baseline": {
+        "BASE": 9.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "COAL_PRICE_5000": 9.0
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "元/吨",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_ed6fcfc7a9c417237fe33def"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-09-04",
+      "dataCutoff": "2026-09-04"
+    },
+    {
+      "nodeId": "node_120e2dadc9bec14909",
+      "layer": "coal_price",
+      "layerNo": 3,
+      "label": "动力煤5500K价格",
+      "sub": "动力煤5500K价格",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": null,
+      "metricCodes": [
+        "COAL_PRICE_5500"
+      ],
+      "baseline": {
+        "BASE": 738.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "COAL_PRICE_5500": 738.0
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "元/吨",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_75b5d2e9a98be2de8f434360"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-09-04",
+      "dataCutoff": "2026-09-04"
+    },
+    {
+      "nodeId": "node_e0144213aa46379d49",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "华能国际 · 上网电量",
+      "sub": "上网电量",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600011.SH",
+      "metricCodes": [
+        "GRID_SALES_POWER"
+      ],
+      "baseline": {
+        "BASE": 1995.78,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "GRID_SALES_POWER": 1995.78
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "亿千瓦时",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_b0f5f3c40837effc6519a74f"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-18",
+      "dataCutoff": "2026-08-18"
+    },
+    {
+      "nodeId": "node_7c46546500c5713daf",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华能国际 · 归母净利润",
+      "sub": "归母净利润",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600011.SH",
+      "metricCodes": [
+        "NET_PROFIT"
+      ],
+      "baseline": {
+        "BASE": 6585729326.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "NET_PROFIT": 6585729326.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_7342110e45fd1f2f54264b1d"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-18",
+      "dataCutoff": "2026-08-18"
+    },
+    {
+      "nodeId": "node_2e471e9849322a8338",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华能国际 · 经营现金流",
+      "sub": "经营现金流",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600011.SH",
+      "metricCodes": [
+        "OPERATING_CASH_FLOW"
+      ],
+      "baseline": {
+        "BASE": 25242626732.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "OPERATING_CASH_FLOW": 25242626732.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_28a10f9f983134cf2267e4e4"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-18",
+      "dataCutoff": "2026-08-18"
+    },
+    {
+      "nodeId": "node_ea4b8cdd5bf40c70fe",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华能国际 · 营业成本",
+      "sub": "营业成本",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600011.SH",
+      "metricCodes": [
+        "OPERATING_COST"
+      ],
+      "baseline": {
+        "BASE": 61.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "OPERATING_COST": 61.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_0f6c47ad680add136ceeb49c"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-18",
+      "dataCutoff": "2026-08-18"
+    },
+    {
+      "nodeId": "node_a4997376ea431d46f3",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华能国际 · 营业收入",
+      "sub": "营业收入",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600011.SH",
+      "metricCodes": [
+        "REVENUE",
+        "TOTAL_LIABILITIES",
+        "OPERATING_COST",
+        "OPERATING_CASH_FLOW",
+        "TOTAL_ASSETS",
+        "GRID_SALES_POWER",
+        "NET_PROFIT"
+      ],
+      "baseline": {
+        "BASE": 624572148.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "TOTAL_LIABILITIES": 95178129972.0,
+        "REVENUE": 624572148.0,
+        "OPERATING_COST": 61.0,
+        "OPERATING_CASH_FLOW": 25242626732.0,
+        "TOTAL_ASSETS": 180115214.0,
+        "GRID_SALES_POWER": 1995.78,
+        "NET_PROFIT": 6585729326.0,
+        "CUSTOM_92C228149839": 6.84,
+        "CUSTOM_E111DAD1A696": 15698093359.0,
+        "CUSTOM_70FD6B9BDACC": 107374958575.56
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_7342110e45fd1f2f54264b1d"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "dataCutoff": "2026-08-18",
+      "asOfDate": "2026-08-18"
+    },
+    {
+      "nodeId": "node_70691f64c80298928f",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "国电电力 · 营业成本",
+      "sub": "营业成本",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "OPERATING_COST"
+      ],
+      "baseline": {
+        "BASE": 57595023824.47,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "OPERATING_COST": 57595023824.47
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_09565a33a008ca92b45b67fc"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_4fed2d919fd1167ca2",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "国电电力 · 营业收入",
+      "sub": "营业收入",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "REVENUE"
+      ],
+      "baseline": {
+        "BASE": 79029113601.09,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "REVENUE": 79029113601.09
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_4781d4e5b4512db518c49850"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_ee1272fb574e2fad6a",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "国电电力 · 归母净利润",
+      "sub": "归母净利润",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "NET_PROFIT"
+      ],
+      "baseline": {
+        "BASE": 3013976240.14,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "NET_PROFIT": 3013976240.14
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_a44f50437b1c3b4e0b1d104d"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_53b61e6b753b1e01d1",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "国电电力 · 装机容量",
+      "sub": "装机容量",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "INSTALLED_CAPACITY"
+      ],
+      "baseline": {
+        "BASE": 13029.12,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "INSTALLED_CAPACITY": 13029.12
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "万千瓦",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_31d27d0d159426fbfd5167e6"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_37f6d02e8a873232d2",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "国电电力 · 上网电价",
+      "sub": "上网电价",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "ON_GRID_TARIFF"
+      ],
+      "baseline": {
+        "BASE": 393.31,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "ON_GRID_TARIFF": 393.31
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "元/兆瓦时",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_028dad73263442b49d881819"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_d39f76ae462d163423",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "国电电力 · 经营现金流",
+      "sub": "经营现金流",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "OPERATING_CASH_FLOW"
+      ],
+      "baseline": {
+        "BASE": 20516819187.46,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "OPERATING_CASH_FLOW": 20516819187.46
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_23cb58ac1d5d0e40c1ce8cf8"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_fd435de24f04bf65f5",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "国电电力 · 上网电量",
+      "sub": "上网电量",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "GRID_SALES_POWER"
+      ],
+      "baseline": {
+        "BASE": 111.14,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "GRID_SALES_POWER": 111.14
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "亿千瓦时",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_bf71bff7b569fc319962f22e"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-08-14",
+      "dataCutoff": "2026-08-14"
+    },
+    {
+      "nodeId": "node_e3a6de1697481550de",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "国电电力 · 发电量",
+      "sub": "发电量",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600795.SH",
+      "metricCodes": [
+        "POWER_GENERATION",
+        "GRID_SALES_POWER"
+      ],
+      "baseline": {
+        "BASE": 2189.1,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "POWER_GENERATION": 2189.1,
+        "GRID_SALES_POWER": 111.14,
+        "CUSTOM_92C228149839": 5.28,
+        "CUSTOM_E111DAD1A696": 17835619082.0,
+        "CUSTOM_70FD6B9BDACC": 94172068752.96
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "亿千瓦时",
+      "valueStatus": "SUPERSEDED_PARSE_V3",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_bf71bff7b569fc319962f22e"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "dataCutoff": "2026-08-14",
+      "asOfDate": "2026-08-14"
+    },
+    {
+      "nodeId": "node_0737f08eb776f62661",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "华电国际 · 上网电价",
+      "sub": "上网电价",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "ON_GRID_TARIFF"
+      ],
+      "baseline": {
+        "BASE": 517.7,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "ON_GRID_TARIFF": 517.7
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "元/兆瓦时",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_bb1bb7d6ab5a42669c49528c"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-07-24",
+      "dataCutoff": "2026-07-24"
+    },
+    {
+      "nodeId": "node_fcb3918f9fdba3bb49",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "华电国际 · 上网电量",
+      "sub": "上网电量",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "GRID_SALES_POWER"
+      ],
+      "baseline": {
+        "BASE": 0.06413,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "GRID_SALES_POWER": 0.06413
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "亿千瓦时",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_61d73227ddd7c2290bf6f5c2"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-07-24",
+      "dataCutoff": "2026-07-24"
+    },
+    {
+      "nodeId": "node_4da1094ca66ae0731d",
+      "layer": "power_operation",
+      "layerNo": 4,
+      "label": "华电国际 · 发电量",
+      "sub": "发电量",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "POWER_GENERATION"
+      ],
+      "baseline": {
+        "BASE": 1077.85,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "POWER_GENERATION": 1077.85
+      },
+      "editableDefinition": true,
+      "editable": true,
+      "unit": "亿千瓦时",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_4f26b5b14dd0dc92c322bd37"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-07-24",
+      "dataCutoff": "2026-07-24"
+    },
+    {
+      "nodeId": "node_cf1c9c78d2d0364953",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华电国际 · 归母净利润",
+      "sub": "归母净利润",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "NET_PROFIT"
+      ],
+      "baseline": {
+        "BASE": 3105000000.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "NET_PROFIT": 3105000000.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_3d9c1a2f0ee29fbab1bc65d0"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-06-30",
+      "dataCutoff": "2026-08-28"
+    },
+    {
+      "nodeId": "node_d133b3187eb556331e",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华电国际 · 营业成本",
+      "sub": "营业成本",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "OPERATING_COST"
+      ],
+      "baseline": {
+        "BASE": 47916088000.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "OPERATING_COST": 47916088000.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_24942c49930f89735eeb6a49"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-06-30",
+      "dataCutoff": "2026-08-28"
+    },
+    {
+      "nodeId": "node_23a037f0d1129268c7",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华电国际 · 经营现金流",
+      "sub": "经营现金流",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "OPERATING_CASH_FLOW"
+      ],
+      "baseline": {
+        "BASE": 9131025000.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "OPERATING_CASH_FLOW": 9131025000.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_a26e7d7d565ff56b6fba5ea8"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-06-30",
+      "dataCutoff": "2026-08-28"
+    },
+    {
+      "nodeId": "node_1cfd1b892699a766f0",
+      "layer": "company_finance",
+      "layerNo": 5,
+      "label": "华电国际 · 营业收入",
+      "sub": "营业收入",
+      "description": "由已接受指标记录生成的候选节点",
+      "entityCode": "600027.SH",
+      "metricCodes": [
+        "REVENUE"
+      ],
+      "baseline": {
+        "BASE": 54264438000.0,
+        "as_of_date": 0.0,
+        "evidence_id": 0.0,
+        "CUSTOM_92C228149839": 4.82,
+        "CUSTOM_E111DAD1A696": 11611774184.0,
+        "CUSTOM_70FD6B9BDACC": 55968751566.880005,
+        "REVENUE": 54264438000.0
+      },
+      "editableDefinition": false,
+      "editable": false,
+      "unit": "元",
+      "valueStatus": "SOURCE_FACT",
+      "nodeType": "METRIC",
+      "evidenceIds": [
+        "ev_157748e713180f4e1bf173c7"
+      ],
+      "status": "CONFIRMED_DATA",
+      "sourceTable": "coal_network.network_nodes",
+      "asOfDate": "2026-06-30",
+      "dataCutoff": "2026-08-28"
+    }
+  ],
+  "edges": [
+    {
+      "edgeId": "edge_009ef32d7995947782",
+      "sourceNodeId": "node_2e471e9849322a8338",
+      "targetNodeId": "node_0e3d385369c6ea7eba",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营现金流到市场估值代理的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "VALUATION_BRIDGE",
+      "formulaId": "formula_1993b79f8573fcf48a",
+      "formulaType": "DCF",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_0d50ce4c61681f46fd",
+      "sourceNodeId": "node_23a037f0d1129268c7",
+      "targetNodeId": "node_fef17fb883c8a3c30a",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营现金流到市场估值代理的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "VALUATION_BRIDGE",
+      "formulaId": "formula_98ca2a370c852b5745",
+      "formulaType": "DCF",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_0e91cfbd601f0c8421",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_70691f64c80298928f",
+      "direction": "negative",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "煤价变化通过燃料成本影响营业成本",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "COST_PRESSURE",
+      "formulaId": "formula_56c5a03e912fdd6bcc",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_10869d72019d5a3e63",
+      "sourceNodeId": "node_4da1094ca66ae0731d",
+      "targetNodeId": "node_1cfd1b892699a766f0",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营量价指标到营业收入的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "OPERATING_TO_FINANCIAL",
+      "formulaId": "formula_8834f2c4aacdf536d2",
+      "formulaType": "REVENUE_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_1a3cf5bab8333e2c63",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_37f6d02e8a873232d2",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_9f74e42c2dba1826",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_1bfbe3369817a3d27e",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_37f6d02e8a873232d2",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_91330bbb39a3743f",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_1d41222176ed9d9621",
+      "sourceNodeId": "node_fd435de24f04bf65f5",
+      "targetNodeId": "node_4fed2d919fd1167ca2",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营量价指标到营业收入的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "OPERATING_TO_FINANCIAL",
+      "formulaId": "formula_7bd9609dc9661eb626",
+      "formulaType": "REVENUE_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_2551231c28edc146b3",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_4da1094ca66ae0731d",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_c54fdb5adf751d85",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_291b02ef27f4640df5",
+      "sourceNodeId": "node_d39f76ae462d163423",
+      "targetNodeId": "node_d9086beaecff2540c5",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营现金流到市场估值代理的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "VALUATION_BRIDGE",
+      "formulaId": "formula_42ef30ff064fd60a72",
+      "formulaType": "DCF",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "implicit-1.0",
+      "invalidation": null
+    },
+    {
+      "edgeId": "edge_3455e8e3388e1d2572",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_d133b3187eb556331e",
+      "direction": "negative",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "煤价变化通过燃料成本影响营业成本",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "COST_PRESSURE",
+      "formulaId": "formula_a85d2e5da9e13cf038",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_36b4598cff1fbfbd92",
+      "sourceNodeId": "node_a4997376ea431d46f3",
+      "targetNodeId": "node_7c46546500c5713daf",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "营业收入到净利润的会计候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "ACCOUNTING_STRUCTURE",
+      "formulaId": "formula_da431053931efac38e",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_3d3e1c6168741e9690",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_fd435de24f04bf65f5",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_42c86146a148963c",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_554a39263b0015375a",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_e0144213aa46379d49",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_7546aa3449f8e4d5",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_58addb5de29064dfa9",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_fcb3918f9fdba3bb49",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_bde2160d265902dd",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_5d1bfdfe553ebf7355",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_ea4b8cdd5bf40c70fe",
+      "direction": "negative",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "煤价变化通过燃料成本影响营业成本",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "COST_PRESSURE",
+      "formulaId": "formula_83888cac76c2ff2043",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_6dc26bc0aa8cf43cdb",
+      "sourceNodeId": "node_70691f64c80298928f",
+      "targetNodeId": "node_ee1272fb574e2fad6a",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "营业成本到净利润的会计候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "ACCOUNTING_STRUCTURE",
+      "formulaId": "formula_5ca755c08170e06f4d",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "implicit-1.0",
+      "invalidation": null
+    },
+    {
+      "edgeId": "edge_70914ee1118a6194a1",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_e3a6de1697481550de",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_2cb65a9bfaf34304",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_70e5dce6da674295dc",
+      "sourceNodeId": "node_ee1272fb574e2fad6a",
+      "targetNodeId": "node_d9086beaecff2540c5",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "净利润到市场估值代理的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "VALUATION_BRIDGE",
+      "formulaId": "formula_7df25d939b8dc01917",
+      "formulaType": "PE_MULTIPLE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "implicit-1.0",
+      "invalidation": null
+    },
+    {
+      "edgeId": "edge_734ef177a3a9d59556",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_0737f08eb776f62661",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_f6776d6a42ae0575",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_7b96f661fc80908c22",
+      "sourceNodeId": "node_e3a6de1697481550de",
+      "targetNodeId": "node_4fed2d919fd1167ca2",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营量价指标到营业收入的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "OPERATING_TO_FINANCIAL",
+      "formulaId": "formula_9b4dd4c01ec3a27a51",
+      "formulaType": "REVENUE_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "implicit-1.0",
+      "invalidation": null
+    },
+    {
+      "edgeId": "edge_88e1de8972596488b2",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_d133b3187eb556331e",
+      "direction": "negative",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "煤价变化通过燃料成本影响营业成本",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "COST_PRESSURE",
+      "formulaId": "formula_43ee9fe91cff4a4a59",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_917ff53cccc62d9200",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_fcb3918f9fdba3bb49",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_063d8ff94c717605",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_9f494fe599319f03b0",
+      "sourceNodeId": "node_fcb3918f9fdba3bb49",
+      "targetNodeId": "node_1cfd1b892699a766f0",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "经营量价指标到营业收入的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "OPERATING_TO_FINANCIAL",
+      "formulaId": "formula_ac20e0c73c0ec96912",
+      "formulaType": "REVENUE_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_a85207687c684ee205",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_4da1094ca66ae0731d",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_1bd98da6ac340ad3",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_a9902a5e5a3a1c27f9",
+      "sourceNodeId": "node_d133b3187eb556331e",
+      "targetNodeId": "node_cf1c9c78d2d0364953",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "营业成本到净利润的会计候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "ACCOUNTING_STRUCTURE",
+      "formulaId": "formula_369fd4ae964adf7427",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_b1f8a1960a26e1d3bc",
+      "sourceNodeId": "node_4fed2d919fd1167ca2",
+      "targetNodeId": "node_ee1272fb574e2fad6a",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "营业收入到净利润的会计候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "ACCOUNTING_STRUCTURE",
+      "formulaId": "formula_431f52c4bcdfc01af8",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "implicit-1.0",
+      "invalidation": null
+    },
+    {
+      "edgeId": "edge_b357047304594c2fbb",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_fd435de24f04bf65f5",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_30a2545da04ce261",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_bb6a8dc0b145ea6b70",
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_ea4b8cdd5bf40c70fe",
+      "direction": "negative",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "煤价变化通过燃料成本影响营业成本",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "COST_PRESSURE",
+      "formulaId": "formula_8485c6a31dc643e650",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_c187b4753ca7f799cf",
+      "sourceNodeId": "node_7c46546500c5713daf",
+      "targetNodeId": "node_0e3d385369c6ea7eba",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "净利润到市场估值代理的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "VALUATION_BRIDGE",
+      "formulaId": "formula_6ada600e4a0fdbe3cf",
+      "formulaType": "PE_MULTIPLE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_c6177b4cdab4df2911",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_0737f08eb776f62661",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_1c543039aa2c9a17",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "edgeId": "edge_ce873190e32cad5f82",
+      "sourceNodeId": "node_ea4b8cdd5bf40c70fe",
+      "targetNodeId": "node_7c46546500c5713daf",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "营业成本到净利润的会计候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "ACCOUNTING_STRUCTURE",
+      "formulaId": "formula_315857d6fe7a40d4f5",
+      "formulaType": "MARGIN_BRIDGE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_d000a190d701c083e9",
+      "sourceNodeId": "node_cf1c9c78d2d0364953",
+      "targetNodeId": "node_fef17fb883c8a3c30a",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.5,
+      "candidateWeight": 0.25,
+      "mechanism": "净利润到市场估值代理的候选桥接",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "VALUATION_BRIDGE",
+      "formulaId": "formula_fc59b5443ce6c4338c",
+      "formulaType": "PE_MULTIPLE",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "method": "requires_historical_calibration",
+        "causal_conclusion": "ABSTAIN"
+      },
+      "formulaVersion": "2.0",
+      "invalidation": "历史样本不足或机制证据被推翻"
+    },
+    {
+      "edgeId": "edge_e61818a39e649fb4a8",
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_e0144213aa46379d49",
+      "direction": "positive",
+      "weight": 0.0,
+      "lagDays": 0,
+      "impactCapPct": 0,
+      "confidence": 0.35,
+      "candidateWeight": 0.175,
+      "mechanism": "煤价到火电经营指标的候选传导",
+      "evidenceSource": "CANDIDATE",
+      "status": "CONFIRMED",
+      "sourceStatus": "AI_APPROVED",
+      "parameterStatus": "AI_ASSUMPTION",
+      "relationType": "EXPOSURE",
+      "formulaId": "f_e0ab01b8e0ff0cd8",
+      "formulaType": "LINEAR_WEIGHT",
+      "formulaParameters": {
+        "status": "DATA_MISSING",
+        "n": 0,
+        "lag_days": 0,
+        "method": "insufficient_same_date_overlap"
+      },
+      "formulaVersion": "1.0",
+      "invalidation": "参数未校准"
+    },
+    {
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_ea4b8cdd5bf40c70fe",
+      "direction": "positive",
+      "weight": 0.82,
+      "lagDays": 30,
+      "confidence": 0.78,
+      "mechanism": "待审核候选：动力煤价格上行通常推升火电燃料采购成本，进而影响营业成本。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-AD9F0609B99A"
+    },
+    {
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_70691f64c80298928f",
+      "direction": "positive",
+      "weight": 0.82,
+      "lagDays": 30,
+      "confidence": 0.78,
+      "mechanism": "待审核候选：动力煤价格上行通常推升火电燃料采购成本，进而影响营业成本。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-7D208F051872"
+    },
+    {
+      "sourceNodeId": "node_120e2dadc9bec14909",
+      "targetNodeId": "node_d133b3187eb556331e",
+      "direction": "positive",
+      "weight": 0.82,
+      "lagDays": 30,
+      "confidence": 0.78,
+      "mechanism": "待审核候选：动力煤价格上行通常推升火电燃料采购成本，进而影响营业成本。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-89A8084C9404"
+    },
+    {
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_7c46546500c5713daf",
+      "direction": "negative",
+      "weight": 0.72,
+      "lagDays": 60,
+      "confidence": 0.7,
+      "mechanism": "待审核候选：煤价上涨若未被电价或利用小时改善抵消，可能压缩火电盈利。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-5C7ABE9324F4"
+    },
+    {
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_ee1272fb574e2fad6a",
+      "direction": "negative",
+      "weight": 0.72,
+      "lagDays": 60,
+      "confidence": 0.7,
+      "mechanism": "待审核候选：煤价上涨若未被电价或利用小时改善抵消，可能压缩火电盈利。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-F5E74C2503CF"
+    },
+    {
+      "sourceNodeId": "node_0c9f80e0259a518d92",
+      "targetNodeId": "node_cf1c9c78d2d0364953",
+      "direction": "negative",
+      "weight": 0.72,
+      "lagDays": 60,
+      "confidence": 0.7,
+      "mechanism": "待审核候选：煤价上涨若未被电价或利用小时改善抵消，可能压缩火电盈利。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-26DE452F4199"
+    },
+    {
+      "sourceNodeId": "node_e0144213aa46379d49",
+      "targetNodeId": "node_a4997376ea431d46f3",
+      "direction": "positive",
+      "weight": 0.84,
+      "lagDays": 30,
+      "confidence": 0.82,
+      "mechanism": "待审核候选：上网电量增加通常带动售电收入增长。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-9FE9F66834DF"
+    },
+    {
+      "sourceNodeId": "node_fd435de24f04bf65f5",
+      "targetNodeId": "node_4fed2d919fd1167ca2",
+      "direction": "positive",
+      "weight": 0.84,
+      "lagDays": 30,
+      "confidence": 0.82,
+      "mechanism": "待审核候选：上网电量增加通常带动售电收入增长。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-DEED94D354AD"
+    },
+    {
+      "sourceNodeId": "node_fcb3918f9fdba3bb49",
+      "targetNodeId": "node_1cfd1b892699a766f0",
+      "direction": "positive",
+      "weight": 0.84,
+      "lagDays": 30,
+      "confidence": 0.82,
+      "mechanism": "待审核候选：上网电量增加通常带动售电收入增长。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-6131C9FF7D58"
+    },
+    {
+      "sourceNodeId": "node_37f6d02e8a873232d2",
+      "targetNodeId": "node_4fed2d919fd1167ca2",
+      "direction": "positive",
+      "weight": 0.8,
+      "lagDays": 30,
+      "confidence": 0.78,
+      "mechanism": "待审核候选：上网电价提升通常提高单位售电收入，对营业收入形成支撑。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-2191F13B3C35"
+    },
+    {
+      "sourceNodeId": "node_0737f08eb776f62661",
+      "targetNodeId": "node_1cfd1b892699a766f0",
+      "direction": "positive",
+      "weight": 0.8,
+      "lagDays": 30,
+      "confidence": 0.78,
+      "mechanism": "待审核候选：上网电价提升通常提高单位售电收入，对营业收入形成支撑。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-018669719082"
+    },
+    {
+      "sourceNodeId": "node_e3a6de1697481550de",
+      "targetNodeId": "node_fd435de24f04bf65f5",
+      "direction": "positive",
+      "weight": 0.86,
+      "lagDays": 0,
+      "confidence": 0.85,
+      "mechanism": "待审核候选：发电量增加通常对应可上网销售电量增加，但需扣除厂用电等因素。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-8FB6E758B245"
+    },
+    {
+      "sourceNodeId": "node_4da1094ca66ae0731d",
+      "targetNodeId": "node_fcb3918f9fdba3bb49",
+      "direction": "positive",
+      "weight": 0.86,
+      "lagDays": 0,
+      "confidence": 0.85,
+      "mechanism": "待审核候选：发电量增加通常对应可上网销售电量增加，但需扣除厂用电等因素。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-A58356BFD7B6"
+    },
+    {
+      "sourceNodeId": "node_53b61e6b753b1e01d1",
+      "targetNodeId": "node_e3a6de1697481550de",
+      "direction": "positive",
+      "weight": 0.65,
+      "lagDays": 90,
+      "confidence": 0.62,
+      "mechanism": "待审核候选：装机容量扩张提升潜在发电能力，实际影响受利用小时、检修和调度约束。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-76684B80633C"
+    },
+    {
+      "sourceNodeId": "node_a4997376ea431d46f3",
+      "targetNodeId": "node_7c46546500c5713daf",
+      "direction": "positive",
+      "weight": 0.76,
+      "lagDays": 30,
+      "confidence": 0.73,
+      "mechanism": "待审核候选：营业收入增加在成本费用不等比例上升时通常增厚归母净利润。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-B9A38AEC911D"
+    },
+    {
+      "sourceNodeId": "node_4fed2d919fd1167ca2",
+      "targetNodeId": "node_ee1272fb574e2fad6a",
+      "direction": "positive",
+      "weight": 0.76,
+      "lagDays": 30,
+      "confidence": 0.73,
+      "mechanism": "待审核候选：营业收入增加在成本费用不等比例上升时通常增厚归母净利润。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-EF7A015D04D9"
+    },
+    {
+      "sourceNodeId": "node_1cfd1b892699a766f0",
+      "targetNodeId": "node_cf1c9c78d2d0364953",
+      "direction": "positive",
+      "weight": 0.76,
+      "lagDays": 30,
+      "confidence": 0.73,
+      "mechanism": "待审核候选：营业收入增加在成本费用不等比例上升时通常增厚归母净利润。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-EE78C3566939"
+    },
+    {
+      "sourceNodeId": "node_ea4b8cdd5bf40c70fe",
+      "targetNodeId": "node_7c46546500c5713daf",
+      "direction": "negative",
+      "weight": 0.78,
+      "lagDays": 30,
+      "confidence": 0.75,
+      "mechanism": "待审核候选：营业成本上升通常压缩利润空间，对归母净利润形成负向影响。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-713639BE67A9"
+    },
+    {
+      "sourceNodeId": "node_7c46546500c5713daf",
+      "targetNodeId": "node_0e3d385369c6ea7eba",
+      "direction": "positive",
+      "weight": 0.7,
+      "lagDays": 30,
+      "confidence": 0.68,
+      "mechanism": "待审核候选：归母净利润改善通常增强市场对公司盈利能力和估值的预期。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-6B5BEF289BCB"
+    },
+    {
+      "sourceNodeId": "node_ee1272fb574e2fad6a",
+      "targetNodeId": "node_d9086beaecff2540c5",
+      "direction": "positive",
+      "weight": 0.7,
+      "lagDays": 30,
+      "confidence": 0.68,
+      "mechanism": "待审核候选：归母净利润改善通常增强市场对公司盈利能力和估值的预期。",
+      "evidenceSource": "AI_MECHANISM_CANDIDATE",
+      "status": "CONFIRMED",
+      "edgeId": "EDGE-3481EB720D6E"
+    }
+  ],
+  "fullGraph": {
+    "nodes": [
+      {
+        "nodeId": "node_d9086beaecff2540c5",
+        "layer": "valuation",
+        "layerNo": 6,
+        "label": "国电电力 · 市场价格代理",
+        "sub": "市场价格代理",
+        "description": "由已接受指标或市场代理生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "CLOSE_PRICE"
+        ],
+        "baseline": {
+          "BASE": 5.27,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "CLOSE_PRICE": 5.27
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元/股",
+        "valueStatus": "MARKET_PROXY",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_4b4ff71f147c7397e92cd8a1"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-09-10",
+        "dataCutoff": "2026-09-10"
+      },
+      {
+        "nodeId": "node_fef17fb883c8a3c30a",
+        "layer": "valuation",
+        "layerNo": 6,
+        "label": "华电国际 · 市场价格代理",
+        "sub": "市场价格代理",
+        "description": "由已接受指标或市场代理生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "CLOSE_PRICE"
+        ],
+        "baseline": {
+          "BASE": 4.88,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "CLOSE_PRICE": 4.88
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元/股",
+        "valueStatus": "MARKET_PROXY",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_ade109078d0edbb5545e987b"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-09-10",
+        "dataCutoff": "2026-09-10"
+      },
+      {
+        "nodeId": "node_0e3d385369c6ea7eba",
+        "layer": "valuation",
+        "layerNo": 6,
+        "label": "华能国际 · 市场价格代理",
+        "sub": "市场价格代理",
+        "description": "由已接受指标或市场代理生成的候选节点",
+        "entityCode": "600011.SH",
+        "metricCodes": [
+          "CLOSE_PRICE"
+        ],
+        "baseline": {
+          "BASE": 6.95,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "CLOSE_PRICE": 6.95
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元/股",
+        "valueStatus": "MARKET_PROXY",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_9b97edae392854f8fbd3c769"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-09-10",
+        "dataCutoff": "2026-09-10"
+      },
+      {
+        "nodeId": "node_0c9f80e0259a518d92",
+        "layer": "coal_price",
+        "layerNo": 3,
+        "label": "动力煤5000K价格",
+        "sub": "动力煤5000K价格",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": null,
+        "metricCodes": [
+          "COAL_PRICE_5000"
+        ],
+        "baseline": {
+          "BASE": 9.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "COAL_PRICE_5000": 9.0
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "元/吨",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_ed6fcfc7a9c417237fe33def"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-09-04",
+        "dataCutoff": "2026-09-04"
+      },
+      {
+        "nodeId": "node_120e2dadc9bec14909",
+        "layer": "coal_price",
+        "layerNo": 3,
+        "label": "动力煤5500K价格",
+        "sub": "动力煤5500K价格",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": null,
+        "metricCodes": [
+          "COAL_PRICE_5500"
+        ],
+        "baseline": {
+          "BASE": 738.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "COAL_PRICE_5500": 738.0
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "元/吨",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_75b5d2e9a98be2de8f434360"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-09-04",
+        "dataCutoff": "2026-09-04"
+      },
+      {
+        "nodeId": "node_e0144213aa46379d49",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "华能国际 · 上网电量",
+        "sub": "上网电量",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600011.SH",
+        "metricCodes": [
+          "GRID_SALES_POWER"
+        ],
+        "baseline": {
+          "BASE": 1995.78,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "GRID_SALES_POWER": 1995.78
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "亿千瓦时",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_b0f5f3c40837effc6519a74f"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-18",
+        "dataCutoff": "2026-08-18"
+      },
+      {
+        "nodeId": "node_7c46546500c5713daf",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华能国际 · 归母净利润",
+        "sub": "归母净利润",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600011.SH",
+        "metricCodes": [
+          "NET_PROFIT"
+        ],
+        "baseline": {
+          "BASE": 6585729326.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "NET_PROFIT": 6585729326.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_7342110e45fd1f2f54264b1d"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-18",
+        "dataCutoff": "2026-08-18"
+      },
+      {
+        "nodeId": "node_2e471e9849322a8338",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华能国际 · 经营现金流",
+        "sub": "经营现金流",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600011.SH",
+        "metricCodes": [
+          "OPERATING_CASH_FLOW"
+        ],
+        "baseline": {
+          "BASE": 25242626732.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "OPERATING_CASH_FLOW": 25242626732.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_28a10f9f983134cf2267e4e4"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-18",
+        "dataCutoff": "2026-08-18"
+      },
+      {
+        "nodeId": "node_ea4b8cdd5bf40c70fe",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华能国际 · 营业成本",
+        "sub": "营业成本",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600011.SH",
+        "metricCodes": [
+          "OPERATING_COST"
+        ],
+        "baseline": {
+          "BASE": 61.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "OPERATING_COST": 61.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_0f6c47ad680add136ceeb49c"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-18",
+        "dataCutoff": "2026-08-18"
+      },
+      {
+        "nodeId": "node_a4997376ea431d46f3",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华能国际 · 营业收入",
+        "sub": "营业收入",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600011.SH",
+        "metricCodes": [
+          "REVENUE",
+          "TOTAL_LIABILITIES",
+          "OPERATING_COST",
+          "OPERATING_CASH_FLOW",
+          "TOTAL_ASSETS",
+          "GRID_SALES_POWER",
+          "NET_PROFIT"
+        ],
+        "baseline": {
+          "BASE": 624572148.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "TOTAL_LIABILITIES": 95178129972.0,
+          "REVENUE": 624572148.0,
+          "OPERATING_COST": 61.0,
+          "OPERATING_CASH_FLOW": 25242626732.0,
+          "TOTAL_ASSETS": 180115214.0,
+          "GRID_SALES_POWER": 1995.78,
+          "NET_PROFIT": 6585729326.0,
+          "CUSTOM_92C228149839": 6.84,
+          "CUSTOM_E111DAD1A696": 15698093359.0,
+          "CUSTOM_70FD6B9BDACC": 107374958575.56
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_7342110e45fd1f2f54264b1d"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "dataCutoff": "2026-08-18",
+        "asOfDate": "2026-08-18"
+      },
+      {
+        "nodeId": "node_70691f64c80298928f",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "国电电力 · 营业成本",
+        "sub": "营业成本",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "OPERATING_COST"
+        ],
+        "baseline": {
+          "BASE": 57595023824.47,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "OPERATING_COST": 57595023824.47
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_09565a33a008ca92b45b67fc"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_4fed2d919fd1167ca2",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "国电电力 · 营业收入",
+        "sub": "营业收入",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "REVENUE"
+        ],
+        "baseline": {
+          "BASE": 79029113601.09,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "REVENUE": 79029113601.09
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_4781d4e5b4512db518c49850"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_ee1272fb574e2fad6a",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "国电电力 · 归母净利润",
+        "sub": "归母净利润",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "NET_PROFIT"
+        ],
+        "baseline": {
+          "BASE": 3013976240.14,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "NET_PROFIT": 3013976240.14
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_a44f50437b1c3b4e0b1d104d"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_53b61e6b753b1e01d1",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "国电电力 · 装机容量",
+        "sub": "装机容量",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "INSTALLED_CAPACITY"
+        ],
+        "baseline": {
+          "BASE": 13029.12,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "INSTALLED_CAPACITY": 13029.12
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "万千瓦",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_31d27d0d159426fbfd5167e6"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_37f6d02e8a873232d2",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "国电电力 · 上网电价",
+        "sub": "上网电价",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "ON_GRID_TARIFF"
+        ],
+        "baseline": {
+          "BASE": 393.31,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "ON_GRID_TARIFF": 393.31
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "元/兆瓦时",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_028dad73263442b49d881819"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_d39f76ae462d163423",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "国电电力 · 经营现金流",
+        "sub": "经营现金流",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "OPERATING_CASH_FLOW"
+        ],
+        "baseline": {
+          "BASE": 20516819187.46,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "OPERATING_CASH_FLOW": 20516819187.46
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_23cb58ac1d5d0e40c1ce8cf8"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_fd435de24f04bf65f5",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "国电电力 · 上网电量",
+        "sub": "上网电量",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "GRID_SALES_POWER"
+        ],
+        "baseline": {
+          "BASE": 111.14,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "GRID_SALES_POWER": 111.14
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "亿千瓦时",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_bf71bff7b569fc319962f22e"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-08-14",
+        "dataCutoff": "2026-08-14"
+      },
+      {
+        "nodeId": "node_e3a6de1697481550de",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "国电电力 · 发电量",
+        "sub": "发电量",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600795.SH",
+        "metricCodes": [
+          "POWER_GENERATION",
+          "GRID_SALES_POWER"
+        ],
+        "baseline": {
+          "BASE": 2189.1,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "POWER_GENERATION": 2189.1,
+          "GRID_SALES_POWER": 111.14,
+          "CUSTOM_92C228149839": 5.28,
+          "CUSTOM_E111DAD1A696": 17835619082.0,
+          "CUSTOM_70FD6B9BDACC": 94172068752.96
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "亿千瓦时",
+        "valueStatus": "SUPERSEDED_PARSE_V3",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_bf71bff7b569fc319962f22e"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "dataCutoff": "2026-08-14",
+        "asOfDate": "2026-08-14"
+      },
+      {
+        "nodeId": "node_0737f08eb776f62661",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "华电国际 · 上网电价",
+        "sub": "上网电价",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "ON_GRID_TARIFF"
+        ],
+        "baseline": {
+          "BASE": 517.7,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "ON_GRID_TARIFF": 517.7
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "元/兆瓦时",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_bb1bb7d6ab5a42669c49528c"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-07-24",
+        "dataCutoff": "2026-07-24"
+      },
+      {
+        "nodeId": "node_fcb3918f9fdba3bb49",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "华电国际 · 上网电量",
+        "sub": "上网电量",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "GRID_SALES_POWER"
+        ],
+        "baseline": {
+          "BASE": 0.06413,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "GRID_SALES_POWER": 0.06413
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "亿千瓦时",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_61d73227ddd7c2290bf6f5c2"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-07-24",
+        "dataCutoff": "2026-07-24"
+      },
+      {
+        "nodeId": "node_4da1094ca66ae0731d",
+        "layer": "power_operation",
+        "layerNo": 4,
+        "label": "华电国际 · 发电量",
+        "sub": "发电量",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "POWER_GENERATION"
+        ],
+        "baseline": {
+          "BASE": 1077.85,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "POWER_GENERATION": 1077.85
+        },
+        "editableDefinition": true,
+        "editable": true,
+        "unit": "亿千瓦时",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_4f26b5b14dd0dc92c322bd37"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-07-24",
+        "dataCutoff": "2026-07-24"
+      },
+      {
+        "nodeId": "node_cf1c9c78d2d0364953",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华电国际 · 归母净利润",
+        "sub": "归母净利润",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "NET_PROFIT"
+        ],
+        "baseline": {
+          "BASE": 3105000000.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "NET_PROFIT": 3105000000.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_3d9c1a2f0ee29fbab1bc65d0"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-06-30",
+        "dataCutoff": "2026-08-28"
+      },
+      {
+        "nodeId": "node_d133b3187eb556331e",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华电国际 · 营业成本",
+        "sub": "营业成本",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "OPERATING_COST"
+        ],
+        "baseline": {
+          "BASE": 47916088000.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "OPERATING_COST": 47916088000.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_24942c49930f89735eeb6a49"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-06-30",
+        "dataCutoff": "2026-08-28"
+      },
+      {
+        "nodeId": "node_23a037f0d1129268c7",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华电国际 · 经营现金流",
+        "sub": "经营现金流",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "OPERATING_CASH_FLOW"
+        ],
+        "baseline": {
+          "BASE": 9131025000.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "OPERATING_CASH_FLOW": 9131025000.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_a26e7d7d565ff56b6fba5ea8"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-06-30",
+        "dataCutoff": "2026-08-28"
+      },
+      {
+        "nodeId": "node_1cfd1b892699a766f0",
+        "layer": "company_finance",
+        "layerNo": 5,
+        "label": "华电国际 · 营业收入",
+        "sub": "营业收入",
+        "description": "由已接受指标记录生成的候选节点",
+        "entityCode": "600027.SH",
+        "metricCodes": [
+          "REVENUE"
+        ],
+        "baseline": {
+          "BASE": 54264438000.0,
+          "as_of_date": 0.0,
+          "evidence_id": 0.0,
+          "CUSTOM_92C228149839": 4.82,
+          "CUSTOM_E111DAD1A696": 11611774184.0,
+          "CUSTOM_70FD6B9BDACC": 55968751566.880005,
+          "REVENUE": 54264438000.0
+        },
+        "editableDefinition": false,
+        "editable": false,
+        "unit": "元",
+        "valueStatus": "SOURCE_FACT",
+        "nodeType": "METRIC",
+        "evidenceIds": [
+          "ev_157748e713180f4e1bf173c7"
+        ],
+        "status": "CONFIRMED_DATA",
+        "sourceTable": "coal_network.network_nodes",
+        "asOfDate": "2026-06-30",
+        "dataCutoff": "2026-08-28"
+      }
+    ],
+    "edges": [
+      {
+        "edgeId": "edge_009ef32d7995947782",
+        "sourceNodeId": "node_2e471e9849322a8338",
+        "targetNodeId": "node_0e3d385369c6ea7eba",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营现金流到市场估值代理的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "VALUATION_BRIDGE",
+        "formulaId": "formula_1993b79f8573fcf48a",
+        "formulaType": "DCF",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_0d50ce4c61681f46fd",
+        "sourceNodeId": "node_23a037f0d1129268c7",
+        "targetNodeId": "node_fef17fb883c8a3c30a",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营现金流到市场估值代理的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "VALUATION_BRIDGE",
+        "formulaId": "formula_98ca2a370c852b5745",
+        "formulaType": "DCF",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_0e91cfbd601f0c8421",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_70691f64c80298928f",
+        "direction": "negative",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "煤价变化通过燃料成本影响营业成本",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "COST_PRESSURE",
+        "formulaId": "formula_56c5a03e912fdd6bcc",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_10869d72019d5a3e63",
+        "sourceNodeId": "node_4da1094ca66ae0731d",
+        "targetNodeId": "node_1cfd1b892699a766f0",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营量价指标到营业收入的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "OPERATING_TO_FINANCIAL",
+        "formulaId": "formula_8834f2c4aacdf536d2",
+        "formulaType": "REVENUE_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_1a3cf5bab8333e2c63",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_37f6d02e8a873232d2",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_9f74e42c2dba1826",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_1bfbe3369817a3d27e",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_37f6d02e8a873232d2",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_91330bbb39a3743f",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_1d41222176ed9d9621",
+        "sourceNodeId": "node_fd435de24f04bf65f5",
+        "targetNodeId": "node_4fed2d919fd1167ca2",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营量价指标到营业收入的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "OPERATING_TO_FINANCIAL",
+        "formulaId": "formula_7bd9609dc9661eb626",
+        "formulaType": "REVENUE_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_2551231c28edc146b3",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_4da1094ca66ae0731d",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_c54fdb5adf751d85",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_291b02ef27f4640df5",
+        "sourceNodeId": "node_d39f76ae462d163423",
+        "targetNodeId": "node_d9086beaecff2540c5",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营现金流到市场估值代理的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "VALUATION_BRIDGE",
+        "formulaId": "formula_42ef30ff064fd60a72",
+        "formulaType": "DCF",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "implicit-1.0",
+        "invalidation": null
+      },
+      {
+        "edgeId": "edge_3455e8e3388e1d2572",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_d133b3187eb556331e",
+        "direction": "negative",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "煤价变化通过燃料成本影响营业成本",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "COST_PRESSURE",
+        "formulaId": "formula_a85d2e5da9e13cf038",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_36b4598cff1fbfbd92",
+        "sourceNodeId": "node_a4997376ea431d46f3",
+        "targetNodeId": "node_7c46546500c5713daf",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "营业收入到净利润的会计候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "ACCOUNTING_STRUCTURE",
+        "formulaId": "formula_da431053931efac38e",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_3d3e1c6168741e9690",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_fd435de24f04bf65f5",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_42c86146a148963c",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_554a39263b0015375a",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_e0144213aa46379d49",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_7546aa3449f8e4d5",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_58addb5de29064dfa9",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_fcb3918f9fdba3bb49",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_bde2160d265902dd",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_5d1bfdfe553ebf7355",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_ea4b8cdd5bf40c70fe",
+        "direction": "negative",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "煤价变化通过燃料成本影响营业成本",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "COST_PRESSURE",
+        "formulaId": "formula_83888cac76c2ff2043",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_6dc26bc0aa8cf43cdb",
+        "sourceNodeId": "node_70691f64c80298928f",
+        "targetNodeId": "node_ee1272fb574e2fad6a",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "营业成本到净利润的会计候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "ACCOUNTING_STRUCTURE",
+        "formulaId": "formula_5ca755c08170e06f4d",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "implicit-1.0",
+        "invalidation": null
+      },
+      {
+        "edgeId": "edge_70914ee1118a6194a1",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_e3a6de1697481550de",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_2cb65a9bfaf34304",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_70e5dce6da674295dc",
+        "sourceNodeId": "node_ee1272fb574e2fad6a",
+        "targetNodeId": "node_d9086beaecff2540c5",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "净利润到市场估值代理的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "VALUATION_BRIDGE",
+        "formulaId": "formula_7df25d939b8dc01917",
+        "formulaType": "PE_MULTIPLE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "implicit-1.0",
+        "invalidation": null
+      },
+      {
+        "edgeId": "edge_734ef177a3a9d59556",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_0737f08eb776f62661",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_f6776d6a42ae0575",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_7b96f661fc80908c22",
+        "sourceNodeId": "node_e3a6de1697481550de",
+        "targetNodeId": "node_4fed2d919fd1167ca2",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营量价指标到营业收入的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "OPERATING_TO_FINANCIAL",
+        "formulaId": "formula_9b4dd4c01ec3a27a51",
+        "formulaType": "REVENUE_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "implicit-1.0",
+        "invalidation": null
+      },
+      {
+        "edgeId": "edge_88e1de8972596488b2",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_d133b3187eb556331e",
+        "direction": "negative",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "煤价变化通过燃料成本影响营业成本",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "COST_PRESSURE",
+        "formulaId": "formula_43ee9fe91cff4a4a59",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_917ff53cccc62d9200",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_fcb3918f9fdba3bb49",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_063d8ff94c717605",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_9f494fe599319f03b0",
+        "sourceNodeId": "node_fcb3918f9fdba3bb49",
+        "targetNodeId": "node_1cfd1b892699a766f0",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "经营量价指标到营业收入的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "OPERATING_TO_FINANCIAL",
+        "formulaId": "formula_ac20e0c73c0ec96912",
+        "formulaType": "REVENUE_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_a85207687c684ee205",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_4da1094ca66ae0731d",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_1bd98da6ac340ad3",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_a9902a5e5a3a1c27f9",
+        "sourceNodeId": "node_d133b3187eb556331e",
+        "targetNodeId": "node_cf1c9c78d2d0364953",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "营业成本到净利润的会计候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "ACCOUNTING_STRUCTURE",
+        "formulaId": "formula_369fd4ae964adf7427",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_b1f8a1960a26e1d3bc",
+        "sourceNodeId": "node_4fed2d919fd1167ca2",
+        "targetNodeId": "node_ee1272fb574e2fad6a",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "营业收入到净利润的会计候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "ACCOUNTING_STRUCTURE",
+        "formulaId": "formula_431f52c4bcdfc01af8",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "implicit-1.0",
+        "invalidation": null
+      },
+      {
+        "edgeId": "edge_b357047304594c2fbb",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_fd435de24f04bf65f5",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_30a2545da04ce261",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_bb6a8dc0b145ea6b70",
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_ea4b8cdd5bf40c70fe",
+        "direction": "negative",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "煤价变化通过燃料成本影响营业成本",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "COST_PRESSURE",
+        "formulaId": "formula_8485c6a31dc643e650",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_c187b4753ca7f799cf",
+        "sourceNodeId": "node_7c46546500c5713daf",
+        "targetNodeId": "node_0e3d385369c6ea7eba",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "净利润到市场估值代理的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "VALUATION_BRIDGE",
+        "formulaId": "formula_6ada600e4a0fdbe3cf",
+        "formulaType": "PE_MULTIPLE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_c6177b4cdab4df2911",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_0737f08eb776f62661",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_1c543039aa2c9a17",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "edgeId": "edge_ce873190e32cad5f82",
+        "sourceNodeId": "node_ea4b8cdd5bf40c70fe",
+        "targetNodeId": "node_7c46546500c5713daf",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "营业成本到净利润的会计候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "ACCOUNTING_STRUCTURE",
+        "formulaId": "formula_315857d6fe7a40d4f5",
+        "formulaType": "MARGIN_BRIDGE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_d000a190d701c083e9",
+        "sourceNodeId": "node_cf1c9c78d2d0364953",
+        "targetNodeId": "node_fef17fb883c8a3c30a",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.5,
+        "candidateWeight": 0.25,
+        "mechanism": "净利润到市场估值代理的候选桥接",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "VALUATION_BRIDGE",
+        "formulaId": "formula_fc59b5443ce6c4338c",
+        "formulaType": "PE_MULTIPLE",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "method": "requires_historical_calibration",
+          "causal_conclusion": "ABSTAIN"
+        },
+        "formulaVersion": "2.0",
+        "invalidation": "历史样本不足或机制证据被推翻"
+      },
+      {
+        "edgeId": "edge_e61818a39e649fb4a8",
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_e0144213aa46379d49",
+        "direction": "positive",
+        "weight": 0.0,
+        "lagDays": 0,
+        "impactCapPct": 0,
+        "confidence": 0.35,
+        "candidateWeight": 0.175,
+        "mechanism": "煤价到火电经营指标的候选传导",
+        "evidenceSource": "CANDIDATE",
+        "status": "CONFIRMED",
+        "sourceStatus": "AI_APPROVED",
+        "parameterStatus": "AI_ASSUMPTION",
+        "relationType": "EXPOSURE",
+        "formulaId": "f_e0ab01b8e0ff0cd8",
+        "formulaType": "LINEAR_WEIGHT",
+        "formulaParameters": {
+          "status": "DATA_MISSING",
+          "n": 0,
+          "lag_days": 0,
+          "method": "insufficient_same_date_overlap"
+        },
+        "formulaVersion": "1.0",
+        "invalidation": "参数未校准"
+      },
+      {
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_ea4b8cdd5bf40c70fe",
+        "direction": "positive",
+        "weight": 0.82,
+        "lagDays": 30,
+        "confidence": 0.78,
+        "mechanism": "待审核候选：动力煤价格上行通常推升火电燃料采购成本，进而影响营业成本。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-AD9F0609B99A"
+      },
+      {
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_70691f64c80298928f",
+        "direction": "positive",
+        "weight": 0.82,
+        "lagDays": 30,
+        "confidence": 0.78,
+        "mechanism": "待审核候选：动力煤价格上行通常推升火电燃料采购成本，进而影响营业成本。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-7D208F051872"
+      },
+      {
+        "sourceNodeId": "node_120e2dadc9bec14909",
+        "targetNodeId": "node_d133b3187eb556331e",
+        "direction": "positive",
+        "weight": 0.82,
+        "lagDays": 30,
+        "confidence": 0.78,
+        "mechanism": "待审核候选：动力煤价格上行通常推升火电燃料采购成本，进而影响营业成本。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-89A8084C9404"
+      },
+      {
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_7c46546500c5713daf",
+        "direction": "negative",
+        "weight": 0.72,
+        "lagDays": 60,
+        "confidence": 0.7,
+        "mechanism": "待审核候选：煤价上涨若未被电价或利用小时改善抵消，可能压缩火电盈利。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-5C7ABE9324F4"
+      },
+      {
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_ee1272fb574e2fad6a",
+        "direction": "negative",
+        "weight": 0.72,
+        "lagDays": 60,
+        "confidence": 0.7,
+        "mechanism": "待审核候选：煤价上涨若未被电价或利用小时改善抵消，可能压缩火电盈利。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-F5E74C2503CF"
+      },
+      {
+        "sourceNodeId": "node_0c9f80e0259a518d92",
+        "targetNodeId": "node_cf1c9c78d2d0364953",
+        "direction": "negative",
+        "weight": 0.72,
+        "lagDays": 60,
+        "confidence": 0.7,
+        "mechanism": "待审核候选：煤价上涨若未被电价或利用小时改善抵消，可能压缩火电盈利。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-26DE452F4199"
+      },
+      {
+        "sourceNodeId": "node_e0144213aa46379d49",
+        "targetNodeId": "node_a4997376ea431d46f3",
+        "direction": "positive",
+        "weight": 0.84,
+        "lagDays": 30,
+        "confidence": 0.82,
+        "mechanism": "待审核候选：上网电量增加通常带动售电收入增长。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-9FE9F66834DF"
+      },
+      {
+        "sourceNodeId": "node_fd435de24f04bf65f5",
+        "targetNodeId": "node_4fed2d919fd1167ca2",
+        "direction": "positive",
+        "weight": 0.84,
+        "lagDays": 30,
+        "confidence": 0.82,
+        "mechanism": "待审核候选：上网电量增加通常带动售电收入增长。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-DEED94D354AD"
+      },
+      {
+        "sourceNodeId": "node_fcb3918f9fdba3bb49",
+        "targetNodeId": "node_1cfd1b892699a766f0",
+        "direction": "positive",
+        "weight": 0.84,
+        "lagDays": 30,
+        "confidence": 0.82,
+        "mechanism": "待审核候选：上网电量增加通常带动售电收入增长。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-6131C9FF7D58"
+      },
+      {
+        "sourceNodeId": "node_37f6d02e8a873232d2",
+        "targetNodeId": "node_4fed2d919fd1167ca2",
+        "direction": "positive",
+        "weight": 0.8,
+        "lagDays": 30,
+        "confidence": 0.78,
+        "mechanism": "待审核候选：上网电价提升通常提高单位售电收入，对营业收入形成支撑。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-2191F13B3C35"
+      },
+      {
+        "sourceNodeId": "node_0737f08eb776f62661",
+        "targetNodeId": "node_1cfd1b892699a766f0",
+        "direction": "positive",
+        "weight": 0.8,
+        "lagDays": 30,
+        "confidence": 0.78,
+        "mechanism": "待审核候选：上网电价提升通常提高单位售电收入，对营业收入形成支撑。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-018669719082"
+      },
+      {
+        "sourceNodeId": "node_e3a6de1697481550de",
+        "targetNodeId": "node_fd435de24f04bf65f5",
+        "direction": "positive",
+        "weight": 0.86,
+        "lagDays": 0,
+        "confidence": 0.85,
+        "mechanism": "待审核候选：发电量增加通常对应可上网销售电量增加，但需扣除厂用电等因素。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-8FB6E758B245"
+      },
+      {
+        "sourceNodeId": "node_4da1094ca66ae0731d",
+        "targetNodeId": "node_fcb3918f9fdba3bb49",
+        "direction": "positive",
+        "weight": 0.86,
+        "lagDays": 0,
+        "confidence": 0.85,
+        "mechanism": "待审核候选：发电量增加通常对应可上网销售电量增加，但需扣除厂用电等因素。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-A58356BFD7B6"
+      },
+      {
+        "sourceNodeId": "node_53b61e6b753b1e01d1",
+        "targetNodeId": "node_e3a6de1697481550de",
+        "direction": "positive",
+        "weight": 0.65,
+        "lagDays": 90,
+        "confidence": 0.62,
+        "mechanism": "待审核候选：装机容量扩张提升潜在发电能力，实际影响受利用小时、检修和调度约束。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-76684B80633C"
+      },
+      {
+        "sourceNodeId": "node_a4997376ea431d46f3",
+        "targetNodeId": "node_7c46546500c5713daf",
+        "direction": "positive",
+        "weight": 0.76,
+        "lagDays": 30,
+        "confidence": 0.73,
+        "mechanism": "待审核候选：营业收入增加在成本费用不等比例上升时通常增厚归母净利润。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-B9A38AEC911D"
+      },
+      {
+        "sourceNodeId": "node_4fed2d919fd1167ca2",
+        "targetNodeId": "node_ee1272fb574e2fad6a",
+        "direction": "positive",
+        "weight": 0.76,
+        "lagDays": 30,
+        "confidence": 0.73,
+        "mechanism": "待审核候选：营业收入增加在成本费用不等比例上升时通常增厚归母净利润。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-EF7A015D04D9"
+      },
+      {
+        "sourceNodeId": "node_1cfd1b892699a766f0",
+        "targetNodeId": "node_cf1c9c78d2d0364953",
+        "direction": "positive",
+        "weight": 0.76,
+        "lagDays": 30,
+        "confidence": 0.73,
+        "mechanism": "待审核候选：营业收入增加在成本费用不等比例上升时通常增厚归母净利润。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-EE78C3566939"
+      },
+      {
+        "sourceNodeId": "node_ea4b8cdd5bf40c70fe",
+        "targetNodeId": "node_7c46546500c5713daf",
+        "direction": "negative",
+        "weight": 0.78,
+        "lagDays": 30,
+        "confidence": 0.75,
+        "mechanism": "待审核候选：营业成本上升通常压缩利润空间，对归母净利润形成负向影响。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-713639BE67A9"
+      },
+      {
+        "sourceNodeId": "node_7c46546500c5713daf",
+        "targetNodeId": "node_0e3d385369c6ea7eba",
+        "direction": "positive",
+        "weight": 0.7,
+        "lagDays": 30,
+        "confidence": 0.68,
+        "mechanism": "待审核候选：归母净利润改善通常增强市场对公司盈利能力和估值的预期。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-6B5BEF289BCB"
+      },
+      {
+        "sourceNodeId": "node_ee1272fb574e2fad6a",
+        "targetNodeId": "node_d9086beaecff2540c5",
+        "direction": "positive",
+        "weight": 0.7,
+        "lagDays": 30,
+        "confidence": 0.68,
+        "mechanism": "待审核候选：归母净利润改善通常增强市场对公司盈利能力和估值的预期。",
+        "evidenceSource": "AI_MECHANISM_CANDIDATE",
+        "status": "CONFIRMED",
+        "edgeId": "EDGE-3481EB720D6E"
+      }
+    ]
+  },
+  "causalGraph": {
+    "nodes": [],
+    "edges": [],
+    "excludedNodeCount": 25,
+    "excludedEdgeCount": 33
+  },
+  "metricValues": [],
+  "createdAt": "2026-09-11T06:29:07.555395+00:00",
+  "activatedAt": "2026-09-11T06:29:07.555395+00:00",
+  "deletable": false,
+  "dataCutoff": "2026-09-10",
+  "recovery": {
+    "sourceNetworkId": "PLAN-B04F7248D89D05F0",
+    "sourceCreatedAt": "2026-09-10T01:46:22.033420+00:00",
+    "updatedNodeMetricValues": 32,
+    "database": "coal_power_v1",
+    "preservesGraphStructure": true
+  }
+}

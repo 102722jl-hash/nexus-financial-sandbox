@@ -1,0 +1,24 @@
+(async()=>{
+  const assert=require('node:assert/strict'),base='http://127.0.0.1:4181',debug='http://127.0.0.1:9224',clientId='CLIENT-v219-generated-e2e';
+  const headers={'Content-Type':'application/json','X-Client-Id':clientId};
+  const call=async(method,path,body)=>{const response=await fetch(base+path,{method,headers,body:body?JSON.stringify(body):undefined});const data=await response.json();if(!response.ok)throw new Error(path+': '+JSON.stringify(data));return data};
+  const workspace=await call('GET','/api/workspace');assert.equal(workspace.status,'READY');assert.ok(workspace.metricValueTotal>0);
+  let plan=await call('POST','/api/network-plans',{sourceId:workspace.source.sourceId,domainId:'generated-financial',mode:'CREATE_NEW_NETWORK',networkName:'刷新恢复测试网络'});
+  plan=await call('POST','/api/network-plans/'+plan.networkPlanId+'/confirm',{});plan=await call('POST','/api/network-plans/'+plan.networkPlanId+'/activate',{});
+  const target=await (await fetch(debug+'/json/new?'+encodeURIComponent(base+'/?domain=coal-steel&view=data&v=2.19.7'),{method:'PUT'})).json();
+  const ws=new WebSocket(target.webSocketDebuggerUrl),pending=new Map();let sequence=0;
+  await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve,{once:true});ws.addEventListener('error',reject,{once:true})});
+  ws.addEventListener('message',(event)=>{const message=JSON.parse(event.data);if(message.id&&pending.has(message.id)){const job=pending.get(message.id);pending.delete(message.id);message.error?job.reject(new Error(message.error.message)):job.resolve(message.result)}});
+  const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+  const evaluate=async(expression)=>{const result=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description||result.exceptionDetails.text);return result.result.value};
+  const waitFor=async(expression,timeout=15000)=>{const started=Date.now();while(Date.now()-started<timeout){try{if(await evaluate(expression))return}catch(error){}await new Promise((resolve)=>setTimeout(resolve,100))}throw new Error('WAIT_TIMEOUT: '+expression)};
+  await send('Runtime.enable');await send('Page.enable');await waitFor("location.origin==='http://127.0.0.1:4181'&&document.readyState==='complete'");
+  await evaluate("sessionStorage.setItem('nexus-client-id','"+clientId+"');location.href='"+base+"/?domain=coal-steel&view=data&v=2.19.7&network="+plan.networkPlanId+"';true");
+  await waitFor("document.readyState==='complete'&&window.NEXUS_V24_BRIDGE?.state.networkMode==='standalone'&&window.NEXUS_V218_PIPELINE?.state.sourceId");
+  const before=await evaluate("(()=>({network:document.getElementById('domainSelect').value,mode:window.NEXUS_V24_BRIDGE.state.networkMode,source:window.NEXUS_V218_PIPELINE.state.sourceId,mappings:window.NEXUS_V218_PIPELINE.state.mappings.length,values:window.NEXUS_V218_PIPELINE.state.values.length,plan:window.NEXUS_V218_PIPELINE.state.plan?.status,db:document.getElementById('v217DbState').textContent,url:location.search}))()");
+  await send('Page.reload',{ignoreCache:true});await waitFor("document.readyState==='complete'&&window.NEXUS_V24_BRIDGE?.state.networkMode==='standalone'&&window.NEXUS_V218_PIPELINE?.state.sourceId");
+  const after=await evaluate("(()=>({network:document.getElementById('domainSelect').value,mode:window.NEXUS_V24_BRIDGE.state.networkMode,source:window.NEXUS_V218_PIPELINE.state.sourceId,mappings:window.NEXUS_V218_PIPELINE.state.mappings.length,values:window.NEXUS_V218_PIPELINE.state.values.length,plan:window.NEXUS_V218_PIPELINE.state.plan?.status,db:document.getElementById('v217DbState').textContent,url:location.search}))()");
+  assert.deepEqual(after,before);assert.ok(after.network.includes(plan.networkPlanId));assert.equal(after.mode,'standalone');assert.ok(after.mappings>0);assert.ok(after.values>0);assert.equal(after.plan,'ACTIVE');assert.ok(after.db.includes('已恢复'));assert.ok(after.url.includes('network='+plan.networkPlanId));
+  await call('DELETE','/api/networks/'+plan.networkPlanId);console.log('V2.19 refresh persistence browser tests: 10/10 passed '+JSON.stringify(after));
+  ws.close();await fetch(debug+'/json/close/'+target.id);
+})().catch((error)=>{console.error(error);process.exit(1)});

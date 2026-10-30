@@ -1,0 +1,259 @@
+{
+  "packageVersion": "4.0",
+  "networkId": "coal_power_v1",
+  "networkName": "煤炭-电力经营-财务-现金流-估值多链路传导网络",
+  "networkIntent": "UPDATE_EXISTING_NETWORK",
+  "packageStatus": "IMPORT_READY",
+  "generatedAt": "2026-10-22T03:16:11.448320+00:00",
+  "dataCutoff": "2026-10-21",
+  "statusPolicy": {
+    "AI_APPROVED": "INCLUDED_AS_CANDIDATE",
+    "formalStatuses": [
+      "CONFIRMED",
+      "ACTIVE",
+      "APPROVED"
+    ],
+    "causalConclusion": "ABSTAIN_UNLESS_IDENTIFIED"
+  },
+  "tables": {
+    "network_registry": {
+      "rows": 1,
+      "status": "PRESENT"
+    },
+    "network_layers": {
+      "rows": 6,
+      "status": "PRESENT"
+    },
+    "network_edges": {
+      "rows": 98,
+      "status": "PRESENT"
+    },
+    "entities": {
+      "rows": 3,
+      "status": "PRESENT"
+    },
+    "metric_values": {
+      "rows": 1537,
+      "status": "PRESENT"
+    },
+    "calculated_metric_lineage": {
+      "rows": 159,
+      "status": "PRESENT"
+    },
+    "metric_definitions": {
+      "rows": 42,
+      "status": "PRESENT"
+    },
+    "network_edge_templates": {
+      "rows": 11,
+      "status": "PRESENT"
+    },
+    "formulas": {
+      "rows": 79,
+      "status": "PRESENT"
+    },
+    "network_nodes": {
+      "rows": 84,
+      "status": "PRESENT"
+    },
+    "evidence": {
+      "rows": 1541,
+      "status": "PRESENT"
+    },
+    "valuation": {
+      "rows": 75,
+      "status": "PRESENT"
+    },
+    "review_queue": {
+      "rows": 205,
+      "status": "PRESENT"
+    },
+    "raw_documents": {
+      "rows": 91,
+      "status": "PRESENT"
+    },
+    "scenario_runs": {
+      "rows": 0,
+      "status": "PRESENT"
+    },
+    "scenario_values": {
+      "rows": 0,
+      "status": "PRESENT"
+    }
+  },
+  "counts": {
+    "nodes": 84,
+    "edges": 98,
+    "aiCandidateEdges": 98,
+    "formalEdges": 0,
+    "calibratedFormulas": 0,
+    "editableNodes": 34,
+    "isolatedNodes": 12,
+    "candidateCompletePaths": 50,
+    "formalCompletePaths": 0,
+    "pendingReviews": 4,
+    "aiApprovedReviews": 201
+  },
+  "validation": {
+    "foreignKeyErrors": 0,
+    "isolatedNodeIds": [
+      "node_53b61e6b753b1e01d1",
+      "node_37bff85819c9e50665",
+      "node_e3c798c014690774a7",
+      "node_ce481119553497d195",
+      "node_615e5f1dafdcc2ac06",
+      "node_6df24810afca0604ec",
+      "node_808f291ae9a9e0d097",
+      "node_308ae3bc545fedab71",
+      "node_e8ab70c949fb55eec1",
+      "node_a0c38a251f49eb8ad6",
+      "node_ef97458244357e2585",
+      "node_403e7bd4f182a0350d"
+    ],
+    "candidateSamplePaths": [
+      [
+        "node_0c9f80e0259a518d92",
+        "node_e0144213aa46379d49",
+        "node_a4997376ea431d46f3",
+        "node_7c46546500c5713daf",
+        "node_0e3d385369c6ea7eba"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_e0144213aa46379d49",
+        "node_a4997376ea431d46f3",
+        "node_7c46546500c5713daf",
+        "node_2de9397a154a1b7efe"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_fcb3918f9fdba3bb49",
+        "node_1cfd1b892699a766f0",
+        "node_cf1c9c78d2d0364953",
+        "node_fef17fb883c8a3c30a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_fcb3918f9fdba3bb49",
+        "node_1cfd1b892699a766f0",
+        "node_cf1c9c78d2d0364953",
+        "node_6100ed304daa17521a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_fd435de24f04bf65f5",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_d9086beaecff2540c5"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_fd435de24f04bf65f5",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_b21f29a28eb2068c69"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_0737f08eb776f62661",
+        "node_1cfd1b892699a766f0",
+        "node_cf1c9c78d2d0364953",
+        "node_fef17fb883c8a3c30a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_0737f08eb776f62661",
+        "node_1cfd1b892699a766f0",
+        "node_cf1c9c78d2d0364953",
+        "node_6100ed304daa17521a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_37f6d02e8a873232d2",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_d9086beaecff2540c5"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_37f6d02e8a873232d2",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_b21f29a28eb2068c69"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_4da1094ca66ae0731d",
+        "node_1cfd1b892699a766f0",
+        "node_cf1c9c78d2d0364953",
+        "node_fef17fb883c8a3c30a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_4da1094ca66ae0731d",
+        "node_1cfd1b892699a766f0",
+        "node_cf1c9c78d2d0364953",
+        "node_6100ed304daa17521a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_e3a6de1697481550de",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_d9086beaecff2540c5"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_e3a6de1697481550de",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_b21f29a28eb2068c69"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_e3a6de1697481550de",
+        "node_fd435de24f04bf65f5",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_d9086beaecff2540c5"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_e3a6de1697481550de",
+        "node_fd435de24f04bf65f5",
+        "node_4fed2d919fd1167ca2",
+        "node_ee1272fb574e2fad6a",
+        "node_b21f29a28eb2068c69"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_ea4b8cdd5bf40c70fe",
+        "node_7c46546500c5713daf",
+        "node_0e3d385369c6ea7eba"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_ea4b8cdd5bf40c70fe",
+        "node_7c46546500c5713daf",
+        "node_2de9397a154a1b7efe"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_d133b3187eb556331e",
+        "node_cf1c9c78d2d0364953",
+        "node_fef17fb883c8a3c30a"
+      ],
+      [
+        "node_0c9f80e0259a518d92",
+        "node_d133b3187eb556331e",
+        "node_cf1c9c78d2d0364953",
+        "node_6100ed304daa17521a"
+      ]
+    ],
+    "formalSamplePaths": []
+  },
+  "candidateReady": true,
+  "formalReady": false,
+  "reviewStatus": "AI_CANDIDATE_READY",
+  "manifestSha256": "3f4f50d42b5bd46631e466ae31cf288a3b256218b810a45fb4a15886e17a391a"
+}

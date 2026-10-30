@@ -1,0 +1,15 @@
+{
+  "product": "NEXUS Financial World Sandbox",
+  "version": "2.19.13",
+  "versionLabel": "V2.19.13-frozen",
+  "lifecycle": "FROZEN",
+  "parentVersion": "V2.19.12",
+  "frozenAt": "2026-09-16",
+  "defaultPort": 4184,
+  "apiVersion": "sandbox-resource-api-1.1.0",
+  "networkContract": "generic-candidate-network-1.0.0",
+  "formulaRegistry": "generic-formula-registry-1.0.0",
+  "credentialPolicy": "EPHEMERAL_OR_ENV_REFERENCE_ONLY",
+  "causalPolicy": "AI_APPROVED_IS_CANDIDATE_AND_ABSTAIN",
+  "successor": "V2.20.0-composite"
+}

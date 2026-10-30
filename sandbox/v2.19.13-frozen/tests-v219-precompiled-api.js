@@ -1,0 +1,23 @@
+(async()=>{
+  const assert=require('node:assert/strict'),base=process.env.NEXUS_URL||'http://127.0.0.1:4183',headers={'Content-Type':'application/json','X-Client-Id':'CLIENT-precompiled-api-test'};
+  const call=async(method,path,body)=>{const response=await fetch(base+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body)}),data=await response.json();if(!response.ok)throw new Error(path+' '+JSON.stringify(data));return data};
+  const nodes=[{nodeId:'cash',label:'货币资金',layer:'capital',baselineValue:100,unit:'万元',metricCode:'CASH'},{nodeId:'profit',label:'营业利润',layer:'outcome',baselineValue:30,unit:'万元',metricCode:'OPERATING_PROFIT'}];
+  const edges=[{edgeId:'cash-profit',sourceNodeId:'cash',targetNodeId:'profit',direction:'positive',weight:.4,lagDays:30,confidence:.8,mechanism:'流动性变化进入经营结果',evidenceSource:'USER_NETWORK_TABLE',status:'CONFIRMED'}];
+  const bytes=Buffer.from(JSON.stringify([{network_id:'api-network',network_name:'API预编译网络',schema_version:'1.0',nodes_json:JSON.stringify(nodes),edges_json:JSON.stringify(edges),calculated_score:88}]),'utf8').toString('base64');
+  const profiled=await call('POST','/api/sources/profile',{sourceType:'file',name:'benchmark-network.json',content:bytes,cutoff:'2026-09-03'});
+  assert.equal(profiled.precompiledAdapter.detected,true);assert.equal(profiled.precompiledAdapter.needsReview,0);assert.ok(profiled.mappings.every((item)=>item.status==='CONFIRMED'));
+  const synced=await call('POST','/api/sources/'+profiled.sourceId+'/sync',{dataCutoff:'2026-09-03',rowLimit:20});
+  assert.equal(synced.precompiledStatus,'VALIDATED');assert.equal(synced.precompiledNetwork.nodeCount,2);assert.equal(synced.precompiledNetwork.edgeCount,1);
+  const plan=await call('POST','/api/network-plans',{sourceId:profiled.sourceId,mode:'CREATE_NEW_NETWORK'});
+  assert.equal(plan.networkKind,'PRECOMPILED_NETWORK');assert.equal(plan.networkName,'API预编译网络');assert.equal(plan.graph.nodes.length,2);assert.equal(plan.graph.edges.length,1);assert.equal(plan.outputLevel,'SCENARIO_PATH_ONLY');
+  const confirmed=await call('POST','/api/network-plans/'+plan.networkPlanId+'/confirm',{confirmedEdgeIds:['cash-profit']});
+  assert.equal(confirmed.status,'CONFIRMED');
+  const active=await call('POST','/api/network-plans/'+plan.networkPlanId+'/activate',{});
+  assert.equal(active.status,'ACTIVE');assert.equal(active.mode,'CREATE_NEW_NETWORK');
+  const listed=await call('GET','/api/networks');
+  assert.ok(listed.networks.some((item)=>item.networkId===plan.networkPlanId));
+  const reloaded=await call('GET','/api/networks/'+plan.networkPlanId);
+  assert.equal(reloaded.status,'ACTIVE');assert.equal(reloaded.fullGraph.nodes.length,2);assert.equal(reloaded.fullGraph.edges.length,1);
+  await call('DELETE','/api/networks/'+plan.networkPlanId);
+  console.log('V2.19 precompiled API tests: 21/21 passed '+JSON.stringify({autoConfirmed:profiled.precompiledAdapter.autoConfirmed,nodes:plan.graph.nodes.length,edges:plan.graph.edges.length,outputLevel:plan.outputLevel,status:active.status,persisted:true}));
+})().catch((error)=>{console.error(error);process.exit(1)});

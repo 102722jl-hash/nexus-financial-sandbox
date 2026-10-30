@@ -1,0 +1,4 @@
+.postgres-secrets.dpapi.json
+__pycache__/
+.tmp-tests/
+.venv-market/
