@@ -1,0 +1,65 @@
+{
+  "spec_version": "industry-network-spec-1.1.0",
+  "domain": {
+    "domain_code": "EXAMPLE_INDUSTRY",
+    "domain_name": "示例行业",
+    "geography": ["CN"],
+    "market_scope": "INDUSTRY_AND_LISTED_COMPANIES",
+    "entities": []
+  },
+  "network": {
+    "network_name": "示例行业复合传导网络",
+    "network_kind": "INDUSTRY_COMPOSITE",
+    "outcomes": ["NET_PROFIT"],
+    "entity_node_policy": "EXPLICIT_WHEN_IN_SCOPE",
+    "company_metric_instantiation": "ALL_ACTIVE_ENTITIES",
+    "missing_value_policy": "KEEP_NODE_AS_DATA_MISSING",
+    "structural_relation_type": "ENTITY_METRIC",
+    "layers": [
+      {"layer_no": 1, "layer_code": "EXTERNAL", "layer_name": "外部驱动", "path_role": "SOURCE", "sort_order": 10},
+      {"layer_no": 2, "layer_code": "OPERATIONS", "layer_name": "经营过程", "path_role": "INTERMEDIATE", "sort_order": 20},
+      {"layer_no": 3, "layer_code": "RESULT", "layer_name": "结果", "path_role": "SINK", "sort_order": 30}
+    ],
+    "relations": [
+      {"relation_code": "DRIVER_TO_RESULT", "source_metric_code": "EXAMPLE_DRIVER", "target_metric_code": "NET_PROFIT", "direction": "positive", "formula_type": "LINEAR_WEIGHT", "candidate_weight": 0.2, "parameter_status": "AI_ASSUMPTION", "status": "AI_APPROVED", "mechanism": "正式项目必须替换示例机制", "lag_days": 0, "confidence": 0.5, "impact_cap_pct": 30, "invalidation": "正式项目必须替换示例失效条件"}
+    ]
+  },
+  "data_requirements": {
+    "metrics": [
+      {"metric_code": "EXAMPLE_DRIVER", "metric_name": "示例驱动指标", "selection": "REQUIRED", "metric_type": "INDEX", "canonical_unit": "index", "unit_family": "INDEX", "frequency": "DAILY", "entity_scope": "INDUSTRY", "default_layer_code": "EXTERNAL", "editable_default": true, "required_for_network": true},
+      {"metric_code": "NET_PROFIT", "metric_name": "净利润", "selection": "REQUIRED", "metric_type": "AMOUNT", "canonical_unit": "CNY", "unit_family": "CURRENCY", "frequency": "QUARTERLY", "entity_scope": "COMPANY", "default_layer_code": "RESULT", "editable_default": false, "required_for_network": true}
+    ]
+  },
+  "sources": [
+    {"source_code": "EXAMPLE_OFFICIAL", "source_name": "示例官方来源", "publisher": "示例机构", "base_url": "https://example.invalid", "source_type": "API", "source_tier": "T1", "license_status": "UNKNOWN", "access_cost": "FREE", "metric_codes": ["EXAMPLE_DRIVER"], "primary": true, "fallback_source_code": null, "rate_limit_per_minute": 10}
+  ],
+  "schedule": {
+    "frequency": "DAILY", "local_time": "11:15", "timezone": "Asia/Shanghai", "workdays_only": true, "holiday_policy": "SKIP", "retry_count": 2, "backfill_start": null, "revision_policy": "PRESERVE_REVISIONS", "notification_policy": "FAILURE_OR_ACTION_REQUIRED", "retention_days": 3650
+  },
+  "history": {
+    "append_observations": true,
+    "preserve_revisions": true,
+    "company_history_enabled": true,
+    "company_history_windows_days": [30, 90, 365, 0],
+    "change_comparison_key": ["entity_code", "metric_code"],
+    "change_comparison_rule": "PREVIOUS_VALID_OBSERVATION"
+  },
+  "database": {
+    "engine": "POSTGRESQL", "database_name": "nexus_networks", "schema_name": "example_industry", "writer_role": "example_industry_writer", "readonly_role": "example_industry_network_readonly", "credential_policy": "AUTO_GENERATE_LOCAL", "writer_password_ref": "EXAMPLE_INDUSTRY_PG_WRITER_PASSWORD", "readonly_password_ref": "EXAMPLE_INDUSTRY_PG_READONLY_PASSWORD",
+    "readonly_objects": ["published_networks", "published_layers", "published_nodes", "published_edges", "published_metric_values", "published_evidence"]
+  },
+  "publication": {
+    "publication_mode": "TIERED_PREVIEW",
+    "preview_required_gates": ["GRAPH_READY"],
+    "scenario_required_gates": ["DATA_READY", "GRAPH_READY", "SCENARIO_READY"],
+    "required_baseline_coverage_threshold": 0.8,
+    "auto_publish_graph_preview": true,
+    "auto_publish_to_network_list": true,
+    "auto_switch_current_network": false,
+    "preserve_old_versions": true,
+    "candidate_causal_status": "ABSTAIN",
+    "display_version_timezone": "Asia/Shanghai",
+    "display_version_format": "YYYY-MM-DD HH:mm"
+  },
+  "decisions": []
+}

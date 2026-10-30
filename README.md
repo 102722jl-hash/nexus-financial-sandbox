@@ -33,9 +33,13 @@ nexus-financial-sandbox/
 │  └─ new_energy_vehicle_collector/← 新能源汽车 采集器
 ├─ template/
 │  └─ multi-industry-sandbox-template/  ← 纯前端静态沙盒（对外演示用）
+├─ skills/
+│  └─ build-industry-network-collector/ ← 驱动"新增行业"的 Skill（定义建库/建表规范）
 ├─ docs/                           ← 设计、契约、指令与使用指南
 └─ scripts/                        ← 独立打包脚本
 ```
+
+> **`skills/` 是本项目的"需求规范入口"**：它把"一个行业该采什么指标、建什么表、开什么权限、怎么过门禁"沉淀成可复用的对话规范，agent 照着它就能从零把一个行业落地成采集库 + 传导网络。
 
 > 仓库只包含**源码与文档**。数据库文件、原始快照、公开 PDF、加密凭据与运行产物均被 [.gitignore](.gitignore) 排除，不会进入版本库。
 
@@ -136,7 +140,14 @@ target_change = source_change × direction × weight × time_factor
 ③ 契约批次幂等入库   ④ 编译并发布网络
 ```
 
-1. **用 Skill 做设计与数据库设计**：个人 Skill `$build-industry-network-collector` 按 9 步逐步提问并落地（网络目的 → 指标矩阵 → 数据源比较 → 自动化策略 → 数据库与凭据 → 规范校验 → 脚手架实现 → 全链路验证 → 发布排程）。它会生成独立 schema 与 `<schema>_writer` / `<schema>_network_readonly` 两个角色，凭据走 `AUTO_GENERATE_LOCAL / USER_ENV / SECRET_MANAGER`，**不要求提供明文密码**。
+1. **用 Skill 做设计与数据库设计**：Skill 源码在本仓库 [skills/build-industry-network-collector](skills/build-industry-network-collector)。先把它复制到你的技能目录（Codex 为 `~/.codex/skills/`，Trae 为 `~/.trae-cn/skills/`），再用 `$build-industry-network-collector` 触发：
+
+   ```text
+   使用 $build-industry-network-collector
+   帮我创建一个储能行业的数据采集数据库和传导网络。
+   ```
+
+   它会按 9 步逐步提问并落地（网络目的 → 指标矩阵 → 数据源比较 → 自动化策略 → 数据库与凭据 → 规范校验 → 脚手架实现 → 全链路验证 → 发布排程）。其中第 5 步专门定义"数据表该按什么要求整理"：生成**独立 schema** 与 `<schema>_writer` / `<schema>_network_readonly` 两个角色，`readonly` 只放行六个发布视图（`references/database-publishing-contract.md`），凭据走 `AUTO_GENERATE_LOCAL / USER_ENV / SECRET_MANAGER`，**不要求提供明文密码**。规范模板与校验器在 `assets/domain-spec.template.json` 与 `scripts/validate_domain_spec.py`。
 2. **采集器落地**：参考 `collectors/` 下的两个现成范例（见第六节）。
 3. **校验 → 编译 → 入库**：
 
@@ -251,6 +262,7 @@ if ($bad) { "失败: $($bad -join ', ')" } else { "全部通过" }
 
 | 文档 | 说明 |
 |---|---|
+| [skills/build-industry-network-collector/SKILL.md](skills/build-industry-network-collector/SKILL.md) | 新增行业的 Skill：采什么指标、建什么库表、开什么权限、怎么过门禁 |
 | [docs/使用指南与加分点.md](docs/使用指南与加分点.md) | 完整使用指南（10 分钟上手、三条路径、设计演进、加分点） |
 | [docs/NEXUS-VERSION-REGISTRY.md](docs/NEXUS-VERSION-REGISTRY.md) | 版本注册表（权威版本清单） |
 | [docs/DATABASE-TO-NETWORK-PACK-PROMPT-V2.md](docs/DATABASE-TO-NETWORK-PACK-PROMPT-V2.md) | 数据包指令 V2（推荐） |
